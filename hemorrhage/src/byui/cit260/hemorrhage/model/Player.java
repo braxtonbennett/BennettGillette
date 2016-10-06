@@ -13,7 +13,8 @@ import java.util.Objects;
  * @author Douglas
  */
 public class Player implements Serializable{
-  
+
+    //class instance variabls
     private String name;
     private double bestTime;
 
