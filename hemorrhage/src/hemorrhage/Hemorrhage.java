@@ -10,6 +10,7 @@ import byui.cit260.hemorrhage.model.Player;
 import byui.cit260.hemorrhage.model.Character;
 import byui.cit260.hemorrhage.model.HealthItem;
 import byui.cit260.hemorrhage.model.Item;
+import byui.cit260.hemorrhage.model.WeaponItem;
 
 /**
  *
@@ -35,7 +36,7 @@ public class Hemorrhage {
         gameOne.setNoPeople(5);
         
         String gameInfo = gameOne.toString();
-        System.out.print(gameInfo);
+        System.out.println(gameInfo);
         
         Character suzie = new Character();
         suzie.setName("Suzie");
@@ -63,6 +64,14 @@ public class Hemorrhage {
         
         String healthItemInfo = bread.toString();
         System.out.println(healthItemInfo);
+        
+        WeaponItem knife = new WeaponItem();
+        knife.setDamage(30);
+        knife.setName("Knife");
+        knife.setQuantityInStock(1);
+        
+        String weaponItemInfo = knife.toString();
+        System.out.println(weaponItemInfo);
     }
     
 }

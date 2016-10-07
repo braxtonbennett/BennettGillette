@@ -9,30 +9,27 @@ package byui.cit260.hemorrhage.model;
  *
  * @author Douglas
  */
-public class HealthItem extends Item {
+public class WeaponItem extends Item {
     
-    private long healthPoints;
+    private long damage;
 
-    public HealthItem() {
+    public long getDamage() {
+        return damage;
     }
 
-    public long getHealthPoints() {
-        return healthPoints;
-    }
-
-    public void setHealthPoints(long healthPoints) {
-        this.healthPoints = healthPoints;
+    public void setDamage(long damage) {
+        this.damage = damage;
     }
 
     @Override
     public String toString() {
-        return "HealthItem{" + super.toString() + "healthPoints=" + healthPoints + '}';
+        return "WeaponItem{"+ super.toString() + "damage=" + damage + '}';
     }
 
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 67 * hash + (int) (this.healthPoints ^ (this.healthPoints >>> 32));
+        hash = 89 * hash + (int) (this.damage ^ (this.damage >>> 32));
         return hash;
     }
 
@@ -47,12 +44,11 @@ public class HealthItem extends Item {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final HealthItem other = (HealthItem) obj;
-        if (this.healthPoints != other.healthPoints) {
+        final WeaponItem other = (WeaponItem) obj;
+        if (this.damage != other.damage) {
             return false;
         }
         return true;
     }
-    
     
 }
