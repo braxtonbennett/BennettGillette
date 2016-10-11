@@ -9,30 +9,39 @@ package byui.cit260.hemorrhage.model;
  *
  * @author Braxton
  */
-public class Pack {
-    
-    private long noSlots;
+public class Location {
+    private long row;
+    private long column;
 
-    public Pack() {
-    }
-    
-    public long getNoSlots() {
-        return noSlots;
+    public Location() {
     }
 
-    public void setNoSlots(long noSlots) {
-        this.noSlots = noSlots;
+    public long getRow() {
+        return row;
+    }
+
+    public void setRow(long row) {
+        this.row = row;
+    }
+
+    public long getColumn() {
+        return column;
+    }
+
+    public void setColumn(long column) {
+        this.column = column;
     }
 
     @Override
     public String toString() {
-        return "Pack{" + "noSlots=" + noSlots + '}';
+        return "Location{" + "row=" + row + ", column=" + column + '}';
     }
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 29 * hash + (int) (this.noSlots ^ (this.noSlots >>> 32));
+        int hash = 7;
+        hash = 97 * hash + (int) (this.row ^ (this.row >>> 32));
+        hash = 97 * hash + (int) (this.column ^ (this.column >>> 32));
         return hash;
     }
 
@@ -47,16 +56,13 @@ public class Pack {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Pack other = (Pack) obj;
-        if (this.noSlots != other.noSlots) {
+        final Location other = (Location) obj;
+        if (this.row != other.row) {
+            return false;
+        }
+        if (this.column != other.column) {
             return false;
         }
         return true;
     }
-    
-    
-    
-        
-    
-    
 }

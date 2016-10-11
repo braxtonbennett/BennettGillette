@@ -10,7 +10,12 @@ import byui.cit260.hemorrhage.model.Player;
 import byui.cit260.hemorrhage.model.Character;
 import byui.cit260.hemorrhage.model.HealthItem;
 import byui.cit260.hemorrhage.model.Item;
+import byui.cit260.hemorrhage.model.Location;
+import byui.cit260.hemorrhage.model.Map;
+import byui.cit260.hemorrhage.model.Pack;
+import byui.cit260.hemorrhage.model.Scene;
 import byui.cit260.hemorrhage.model.WeaponItem;
+
 
 /**
  *
@@ -72,6 +77,35 @@ public class Hemorrhage {
         
         String weaponItemInfo = knife.toString();
         System.out.println(weaponItemInfo);
+        
+        Pack packOne = new Pack();
+        packOne.setNoSlots(5);
+        
+        String packInfo = packOne.toString();
+        System.out.println(packInfo);
+        
+        Map mapOne = new Map();
+        mapOne.setRowCount(5);
+        mapOne.setColumnCount(3);
+        
+        String mapInfo = mapOne.toString();
+        System.out.println(mapInfo);
+        
+        Location locationOne = new Location();
+        locationOne.setRow(3);
+        locationOne.setColumn(4);
+        
+        String locationInfo = locationOne.toString();
+        System.out.println(locationInfo);
+        
+        Scene sceneOne = new Scene();
+        sceneOne.setDescription("House");
+        sceneOne.setBlockedDirections(4);
+        
+        String sceneInfo = sceneOne.toString();
+        System.out.println(sceneInfo);
+        
+        
     }
     
 }
