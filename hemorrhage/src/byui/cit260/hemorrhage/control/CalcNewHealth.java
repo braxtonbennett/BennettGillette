@@ -27,6 +27,4 @@ public class CalcNewHealth {
 
     }
     
-    newHealth = getNewHealth (playerCurrentHealth,amountOfFood);
-    return newHealth; 
 }
