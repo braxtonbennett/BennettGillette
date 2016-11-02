@@ -177,6 +177,9 @@ class GameMenuView {
     }
 
     private void viewHelpMenu() {
-        System.out.println("\n*** viewHelpMenu() called***");
+      //  GameHelpMenuView
+      //  GameHelpMenuView gamehelpMenuView = new GameHelpMenuView();
+       
+      // gameHelpMenuView.displayGameHelpMenu();
     }
 }
