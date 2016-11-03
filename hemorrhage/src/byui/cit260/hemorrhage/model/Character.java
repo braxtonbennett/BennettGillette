@@ -19,7 +19,6 @@ public class Character implements Serializable{
      private long mapCoordinateY;
      private long atkPower;
      private long health;
-     private long defPower;
 
     public Character() {
     }
@@ -72,17 +71,10 @@ public class Character implements Serializable{
         this.health = health;
     }
 
-    public long getDefPower() {
-        return defPower;
-    }
-
-    public void setDefPower(long defPower) {
-        this.defPower = defPower;
-    }
 
     @Override
     public String toString() {
-        return "Character{" + "name=" + name + ", description=" + description + ", mapCoordinateX=" + mapCoordinateX + ", mapCoordinateY=" + mapCoordinateY + ", atkPower=" + atkPower + ", health=" + health + ", defPower=" + defPower + '}';
+        return "Character{" + "name=" + name + ", description=" + description + ", mapCoordinateX=" + mapCoordinateX + ", mapCoordinateY=" + mapCoordinateY + ", atkPower=" + atkPower + ", health=" + health + '}';
     }
 
     @Override
@@ -94,7 +86,6 @@ public class Character implements Serializable{
         hash = 41 * hash + (int) (this.mapCoordinateY ^ (this.mapCoordinateY >>> 32));
         hash = 41 * hash + (int) (this.atkPower ^ (this.atkPower >>> 32));
         hash = 41 * hash + (int) (this.health ^ (this.health >>> 32));
-        hash = 41 * hash + (int) (this.defPower ^ (this.defPower >>> 32));
         return hash;
     }
 
@@ -122,9 +113,7 @@ public class Character implements Serializable{
         if (this.health != other.health) {
             return false;
         }
-        if (this.defPower != other.defPower) {
-            return false;
-        }
+        
         if (!Objects.equals(this.name, other.name)) {
             return false;
         }
