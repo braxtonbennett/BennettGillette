@@ -20,7 +20,7 @@ public class HealingView {
                 + "\nHealing"
                 + "\n**************************************************"
                 + "\n|C - Chicken(25points)"
-                + "\nS - Steak(50points)"
+                + "\n|S - Steak(50points)"
                 + "\n|B - Burger(150points)"
                 + "\n|E - Exit Help Menu"
                 + "\n**************************************************";
@@ -86,18 +86,20 @@ public class HealingView {
     }
 
     private void displayChicken() {
-        System.out.println("\nThe chicken was delicious, you are feeling better.");
+       
+      long health = byui.cit260.hemorrhage.control.CharacterControl.getNewHealth(50,50, 50);
     }
     
      private void displaySteak() {
-        System.out.println("\nYou ate some Steak."
-        +"\nYou haven't eaten something so delicious in your life.");
+       long health = byui.cit260.hemorrhage.control.CharacterControl.getNewHealth(50,50, 50);
     }
+     
+     
       private void displayBurger() {
-        System.out.println("\nYou are contemplating if there was a benifit in your decision in eating an old burger.");
+        long health = byui.cit260.hemorrhage.control.CharacterControl.getNewHealth(50,50, 50);
     }
 
 
     }
     
-}
+
