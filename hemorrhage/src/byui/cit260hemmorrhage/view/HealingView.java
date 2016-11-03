@@ -20,9 +20,9 @@ public class HealingView {
         this.healing = "\n**************************************************"
                 + "\nHealing"
                 + "\n**************************************************"
-                + "\n|C - Chicken(25points)"
-                + "\n|S - Steak(50points)"
-                + "\n|B - Burger(150points)"
+                + "\n|C - Chicken(10points)"
+                + "\n|S - Steak(25points)"
+                + "\n|B - Burger(50points)"
                 + "\n|E - Exit Help Menu"
                 + "\n**************************************************";
     }
@@ -92,17 +92,17 @@ public class HealingView {
         
        
     
-        long health =  byui.cit260.hemorrhage.control.CharacterControl.getNewHealth(50,20,50);
+        long health =  byui.cit260.hemorrhage.control.CharacterControl.getNewHealth(50,10,50);
       System.out.println("you have gained " + health + " health! great job.");
     }
     
      private void displaySteak() {
-       long health = byui.cit260.hemorrhage.control.CharacterControl.getNewHealth(50,40, 50);
+       long health = byui.cit260.hemorrhage.control.CharacterControl.getNewHealth(50,25, 50);
     }
      
      
       private void displayBurger() {
-        long health = byui.cit260.hemorrhage.control.CharacterControl.getNewHealth(50,60, 50);
+        long health = byui.cit260.hemorrhage.control.CharacterControl.getNewHealth(50,50, 50);
     }
 
    
