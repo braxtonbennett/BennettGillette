@@ -14,6 +14,7 @@ import java.util.Scanner;
 public class HealingView {
     
                 private String healing;
+                
     
     public HealingView() {
         this.healing = "\n**************************************************"
@@ -87,19 +88,27 @@ public class HealingView {
 
     private void displayChicken() {
        
-      long health = byui.cit260.hemorrhage.control.CharacterControl.getNewHealth(50,50, 50);
+
+        
+       
+    
+        long health =  byui.cit260.hemorrhage.control.CharacterControl.getNewHealth(50,20,50);
+      System.out.println("you have gained " + health + " health! great job.");
     }
     
      private void displaySteak() {
-       long health = byui.cit260.hemorrhage.control.CharacterControl.getNewHealth(50,50, 50);
+       long health = byui.cit260.hemorrhage.control.CharacterControl.getNewHealth(50,40, 50);
     }
      
      
       private void displayBurger() {
-        long health = byui.cit260.hemorrhage.control.CharacterControl.getNewHealth(50,50, 50);
+        long health = byui.cit260.hemorrhage.control.CharacterControl.getNewHealth(50,60, 50);
+    }
+
+   
     }
 
 
-    }
+    
     
 

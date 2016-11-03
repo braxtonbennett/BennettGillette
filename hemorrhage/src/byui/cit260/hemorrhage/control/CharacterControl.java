@@ -10,7 +10,7 @@ package byui.cit260.hemorrhage.control;
  * @author Braxton
  */
 public class CharacterControl {
-    public long getNewHealth(long playerCurrentHealth, long amountOfFood, long healthPoints) {
+    public static long getNewHealth(long playerCurrentHealth, long amountOfFood, long healthPoints) {
         
         long playerMaxHealth = 50;
        

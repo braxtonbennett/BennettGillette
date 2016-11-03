@@ -23,6 +23,7 @@ class GameMenuView {
                 + "\n L - Look Around"
                 + "\n S - Search in location"
                 + "\n A - Attack Enemy"
+                + "\n X - Heal"
                 + "\n I - View Inventory"
                 + "\n G - View Glossary"
                 + "\n-----------------------------------------------------";
@@ -90,6 +91,9 @@ class GameMenuView {
                break;
            case "G":
                this.viewGlossary();
+               break;
+            case "X":
+               this.viewHealMenu();
                break;
            case "H":
                this.viewHelpMenu();
@@ -181,5 +185,11 @@ class GameMenuView {
       //  GameHelpMenuView gamehelpMenuView = new GameHelpMenuView();
        
       // gameHelpMenuView.displayGameHelpMenu();
+    }
+
+    private void viewHealMenu() {
+        
+        HealingView healingView = new HealingView();
+        healingView.displayHealing();
     }
 }
