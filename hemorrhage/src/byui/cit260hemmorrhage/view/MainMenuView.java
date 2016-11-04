@@ -94,8 +94,8 @@ public class MainMenuView {
     private void startNewGame() {
        GameControl.createNewGame(Hemorrhage.getPlayer());
        
-       GameMenuView gameMenu = new GameMenuView();
-       gameMenu.displayMenu();
+       ChampMenuView champMenu = new ChampMenuView();
+       champMenu.displayChampMenu();
     }
 
     private void startExistingGame() {
