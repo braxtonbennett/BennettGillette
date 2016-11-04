@@ -10,10 +10,10 @@ package byui.cit260.hemorrhage.control;
  * @author Braxton
  */
 public class CharacterControl {
-    public long getNewHealth(long playerCurrentHealth, long amountOfFood) {
+    public static long getNewHealth(long playerCurrentHealth, long amountOfFood, long healthPoints) {
         
         long playerMaxHealth = 50;
-        long foodPoints = 10;
+       
         if (playerCurrentHealth <= 0 || amountOfFood <= 0) {
             return -1;
         }
@@ -21,7 +21,7 @@ public class CharacterControl {
             return -1;
         }
         
-        long newHealth = playerCurrentHealth + (amountOfFood * foodPoints);
+        long newHealth = playerCurrentHealth + (amountOfFood * healthPoints);
         return newHealth;
 
     }
