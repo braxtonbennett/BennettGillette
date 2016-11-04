@@ -10,6 +10,11 @@ package byui.cit260.hemorrhage.control;
  * @author Braxton
  */
 public class CombatControl {
+
+    public CombatControl() {
+    }
+    
+    
     public long calcBattleHealth(long attackDamage, long health, long weaponDamage, long monsterDamage, long monsterHealth) {
         if (attackDamage <= 0) {
                 return 999;

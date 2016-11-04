@@ -6,12 +6,14 @@
 package byui.cit260hemmorrhage.view;
 
 import java.util.Scanner;
-
+import byui.cit260.hemorrhage.model.Character;
 /**
  *
  * @author Douglas
  */
 class GameMenuView {
+    
+       
 
     private String gameMenu;
     public GameMenuView() {
@@ -165,7 +167,24 @@ class GameMenuView {
     }
 
     private void attackEnemy() {
-        System.out.println("\n*** attackEnemy() called***");
+        Character mainCharacter = new Character();
+       mainCharacter.setName("Chuck");
+       mainCharacter.setAtkPower(40);
+       mainCharacter.setHealth(100);
+       mainCharacter.setDescription("awesome dude");
+       mainCharacter.setMapCoordinateX(2);
+       mainCharacter.setMapCoordinateY(3);
+       
+        Character zombieBoss = new Character();
+       zombieBoss.setName("Da Boss");
+       zombieBoss.setAtkPower(30);
+       zombieBoss.setHealth(80);
+       zombieBoss.setDescription("He Da Boss");
+       zombieBoss.setMapCoordinateX(2);
+       zombieBoss.setMapCoordinateY(3);
+       
+        BattleView battleView = new BattleView();
+        battleView.displayBattleView(mainCharacter, zombieBoss);
     }
 
     private void viewInventory() {
@@ -177,9 +196,9 @@ class GameMenuView {
     }
 
     private void viewHelpMenu() {
-      //  GameHelpMenuView
-      //  GameHelpMenuView gamehelpMenuView = new GameHelpMenuView();
+      //GameHelpMenuView
+      //GameHelpMenuView gamehelpMenuView = new GameHelpMenuView();
        
-      // gameHelpMenuView.displayGameHelpMenu();
+      //gameHelpMenuView.displayGameHelpMenu();
     }
 }
