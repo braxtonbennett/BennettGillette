@@ -13,7 +13,7 @@ class CreateCureView {
        private String cureMenu;
        public CreateCureView() {
            this.cureMenu = "/n***********************************"
-                   + ""
+                   + "";
 
     
 }
