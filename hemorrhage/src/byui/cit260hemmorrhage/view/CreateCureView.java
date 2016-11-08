@@ -75,9 +75,7 @@ class CreateCureView {
            System.out.println("\nPlease enter ingredient 4");
            choice = this.getCreateCureOption();
            String ingredient4 = determineIngredient(choice);
-           
-           call getinput to get the next choice
-           determine 2nd ingredient and save as ingredient 2
+         
            
            call a control funtion to determine if it's the correct set of ingredients
            if it is then print congratulations!
