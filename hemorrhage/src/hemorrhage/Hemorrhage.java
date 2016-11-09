@@ -60,7 +60,7 @@ public class Hemorrhage {
             burger.setQuantityInStock(5);
             
        StartProgramView startProgramView = new StartProgramView();
-       startProgramView.displayStartProgramView();
+       startProgramView.display();
        
        
        
