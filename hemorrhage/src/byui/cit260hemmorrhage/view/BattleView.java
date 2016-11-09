@@ -19,8 +19,12 @@ public class BattleView {
 
     public long newHealth = 0;
     private static WeaponItem weaponchoice = null;
+    private String prompt;
     
     public BattleView() {
+        this.prompt = ("\nYou are about to attack a zombie."
+                  + "\nWhich weapon from your pack would you like to use?"
+                  + "\nIf you don't want to attack enter RUN.");
         
     }
     void displayBattleView(Character mainCharacter,Character zombieBoss) {
@@ -42,9 +46,7 @@ public class BattleView {
       boolean valid = false;
       
       while (!valid) {
-          System.out.println("\nYou are about to attack a zombie."
-                  + "\nWhich weapon from your pack would you like to use?"
-                  + "\nIf you don't want to attack enter RUN.");
+          System.out.println("\n"+ this.prompt);
           
           value = keyboard.nextLine();
           value = value.trim();
@@ -68,26 +70,21 @@ public class BattleView {
         long weaponDmg = 0;
         
         
-       switch (choice) {
-           case "KNIFE":
+       if (choice == "KNIFE") {
+           
                  WeaponItem weaponChoice = Hemorrhage.getKnife();
                  weaponDmg = weaponChoice.getDamage();
-               break;
-           case "BAT":
-               weaponChoice = Hemorrhage.getBat();
+    }else if(choice == "BAT") {
+               WeaponItem weaponChoice = Hemorrhage.getBat();
                weaponDmg = weaponChoice.getDamage();
-               break;
-           case "PISTOL":
-               weaponChoice = Hemorrhage.getPistol();
+    }else if(choice == "Pistol") {
+               WeaponItem weaponChoice = Hemorrhage.getPistol();
                weaponDmg = weaponChoice.getDamage();
-               break;
-           case "SHOTGUN":
-               weaponChoice = Hemorrhage.getShotgun();
+    }else if(choice == "SHOTGUN") {
+               WeaponItem weaponChoice = Hemorrhage.getShotgun();
                weaponDmg = weaponChoice.getDamage();
-               break;
-           default:
+    }else {
                System.out.println("\n*** Invalid selection *** Try Again");
-               break;
        }
        
         
