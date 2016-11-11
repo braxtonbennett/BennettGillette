@@ -11,59 +11,24 @@ import java.util.Scanner;
  *
  * @author Douglas
  */
-class HelpMenuView {
+class HelpMenuView extends View{
     
     private String helpMenu;
     
     public HelpMenuView() {
-        this.helpMenu = "\n**************************************************"
+        super("\n**************************************************"
                 + "\nHelp Menu"
                 + "\n**************************************************"
                 + "\n|O - Objectives"
                 + "\n|C - Developer Credits"
                 + "\n|E - Exit Help Menu"
-                + "\n**************************************************";
+                + "\n**************************************************");
     }
      
     
-    public void displayHelpMenu() {
-        boolean done =  false;
-        do {
-            String helpMenuOption = this.getHelpMenuOption();
-            if (helpMenuOption.toUpperCase().equals("E"))
-                return;
-            
-            done = this.doAction(helpMenuOption);
-            
-            }
-        while (!done);
-    }
     
-    private String getHelpMenuOption() {
-      Scanner keyboard = new Scanner(System.in);
-      String value = "";
-      boolean valid = false;
-      
-      while (!valid) {
-          System.out.println("\n" + this.helpMenu);
-          
-          value = keyboard.nextLine();
-          value = value.trim();
-          
-          if (value.length() < 1) {
-              System.out.println("\nInvalid value: value cannot be blank");
-              continue;
-              
-          }
-          
-          break;
-      }
-      
-      return value;
-        
-    }
-    
-    private boolean doAction(String choice) {
+    @Override
+    public boolean doAction(String choice) {
            choice = choice.toUpperCase();
        
        switch (choice) {

@@ -11,13 +11,13 @@ import byui.cit260.hemorrhage.model.Character;
  *
  * @author Douglas
  */
-class GameMenuView {
+public class GameMenuView extends View{
     
        
 
     private String gameMenu;
     public GameMenuView() {
-        this.gameMenu = "\n-----------------------------------------------------"
+        super("\n-----------------------------------------------------"
                 + "\n             Game Menu"
                 + "\n-----------------------------------------------------"
                 + "\n V - View Map"
@@ -28,48 +28,15 @@ class GameMenuView {
                 + "\n X - Heal"
                 + "\n I - View Inventory"
                 + "\n G - View Glossary"
-                + "\n-----------------------------------------------------";
+                + "\n H - Help Menu"
+                + "\n-----------------------------------------------------");
     }
 
     
-    void displayMenu() {
-          boolean done =  false;
-        do {
-            String gameMenuOption = this.getGameMenuOption();
-            if (gameMenuOption.toUpperCase().equals("E"))
-                return;
-            
-            done = this.doAction(gameMenuOption);
-            
-            }
-        while (!done);
-    }
-    
-    private String getGameMenuOption() {
-      Scanner keyboard = new Scanner(System.in);
-      String value = "";
-      boolean valid = false;
-      
-      while (!valid) {
-          System.out.println("\n" + this.gameMenu);
-          
-          value = keyboard.nextLine();
-          value = value.trim();
-          
-          if (value.length() < 1) {
-              System.out.println("\nInvalid value: value cannot be blank");
-              continue;
-              
-          }
-          
-          break;
-      }
-      
-      return value;
+  
         
-    }
-
-    private boolean doAction(String choice) {
+    @Override
+    public boolean doAction(String choice) {
         choice = choice.toUpperCase();
        
        switch (choice) {
@@ -108,11 +75,7 @@ class GameMenuView {
     }
 
     private void viewMap() {
-        System.out.println("\n*** viewMap() called***");
-    }
-
-    private void moveLocation() {
-       System.out.println("\nThese are the maps of all 5 areas"
+        System.out.println("\nThese are the maps of all 5 areas"
                + "\n---------------------------------"
                + "\n            Map 1 Bunker"
                + "\n---------------------------------"
@@ -160,6 +123,11 @@ class GameMenuView {
                + "\n---------------------------------"
                + "\n|      1,1       |       2,1    |"
                + "\n---------------------------------");
+        
+    }
+
+    private void moveLocation() {
+       System.out.println("\n*** moveLocation() called***");
     }
 
     private void lookAround() {
@@ -171,24 +139,9 @@ class GameMenuView {
     }
 
     private void attackEnemy() {
-        Character mainCharacter = new Character();
-       mainCharacter.setName("Chuck");
-       mainCharacter.setAtkPower(40);
-       mainCharacter.setHealth(100);
-       mainCharacter.setDescription("awesome dude");
-       mainCharacter.setMapCoordinateX(2);
-       mainCharacter.setMapCoordinateY(3);
-       
-        Character zombieBoss = new Character();
-       zombieBoss.setName("Da Boss");
-       zombieBoss.setAtkPower(30);
-       zombieBoss.setHealth(80);
-       zombieBoss.setDescription("He Da Boss");
-       zombieBoss.setMapCoordinateX(2);
-       zombieBoss.setMapCoordinateY(3);
        
         BattleView battleView = new BattleView();
-        battleView.displayBattleView(mainCharacter, zombieBoss);
+        battleView.display();
     }
 
     private void viewInventory() {
@@ -200,15 +153,14 @@ class GameMenuView {
     }
 
     private void viewHelpMenu() {
-      //GameHelpMenuView
-      //GameHelpMenuView gamehelpMenuView = new GameHelpMenuView();
+      GameHelpMenuView gameHelpMenuView = new GameHelpMenuView();
        
-      //gameHelpMenuView.displayGameHelpMenu();
+      gameHelpMenuView.display();
     }
 
     private void viewHealMenu() {
         
         HealingView healingView = new HealingView();
-        healingView.displayHealing();
+        healingView.display();
     }
 }

@@ -14,93 +14,37 @@ import java.util.Scanner;
  *
  * @author jnava
  */
-public class HealingView {
+public class HealingView extends View{
                 private static HealthItem HealthChoice = null;
     
                 private String healing;
-                private String quanity;
                 
     
     public HealingView() {
-        this.healing = "\n**************************************************"
+        super("\n**************************************************"
                 + "\nHealing"
                 + "\n**************************************************"
                 + "\n|C - Chicken(10points)"
                 + "\n|S - Steak(25points)"
                 + "\n|B - Burger(50points)"
                 + "\n|E - Exit Help Menu"
-                + "\n**************************************************";
-        this.quanity = "\nPlease enter the number of food";    
+                + "\n**************************************************");
+           
                         }
      
-    
-    public void displayHealing() {
-        boolean done =  false;
-        do {
-            String healingMenuOption = this.getHealingMenuOption();
-            if (healingMenuOption.toUpperCase().equals("E"))
-                return;
-            long quanity = this.getQuanity();
-            done = this.doAction(healingMenuOption, quanity);
-            
-            }
-        while (!done);
-    }
-    
-    private String getHealingMenuOption() {
-      Scanner keyboard = new Scanner(System.in);
-      String value = "";
-      boolean valid = false;
-      
-      while (!valid) {
-          System.out.println("\n" + this.healing);
-          
-          value = keyboard.nextLine();
-          value = value.trim();
-          
-          if (value.length() < 1) {
-              System.out.println("\nInvalid value: value cannot be blank");
-              continue;
-              
-          }
-          
-          break;
-      }
-      
-      return value;
+    @Override
+    public boolean doAction(String choice) {
         
-    }
-private long getQuanity(){
-     Scanner keyboard = new Scanner(System.in);
-      long value = 0;
-      boolean valid = false;
-      
-      while (!valid) {
-          System.out.println("\n" + this.quanity);
-          
-          value = keyboard.nextLong();
-          
-          
-         if(value > 5){
-             System.out.println("\nValue is too high");
-             continue;
-             
-              
-          }
-          
-          break;
-      }
-      
-      return value;
-    
-    
-}
-    
-    private boolean doAction(String choice, long quanity) {
+        
            choice = choice.toUpperCase();
-           long healthPoint = 0; 
+           long healthPoint = 0;
            
-       
+        // set displayMessage to next prompt message
+         this.displayMessage = "\nPlease enter the number of food";
+        // call getInput() to get the second value
+       String Strquantity = this.getInput();
+       long quantity = Long.parseLong(Strquantity);
+        
        switch (choice) {
            case "C":
            HealthItem healthChoice = Hemorrhage.getChicken();
@@ -122,7 +66,7 @@ private long getQuanity(){
                break;
        }
        CharacterControl characterControl = new CharacterControl();
-            long newHealth = characterControl.getNewHealth(55, quanity, healthPoint);
+            long newHealth = characterControl.getNewHealth(55, quantity, healthPoint);
        return false;
     }
 

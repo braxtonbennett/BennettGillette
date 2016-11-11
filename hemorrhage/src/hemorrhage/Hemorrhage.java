@@ -11,6 +11,7 @@ import byui.cit260.hemorrhage.model.HealthItem;
 import byui.cit260.hemorrhage.model.Player;
 import byui.cit260hemmorrhage.view.StartProgramView;
 import byui.cit260.hemorrhage.model.WeaponItem;
+import byui.cit260.hemorrhage.model.Character;
 
 /**
  *
@@ -28,6 +29,8 @@ public class Hemorrhage {
     private static WeaponItem pistol = new WeaponItem();
     private static WeaponItem bat = new WeaponItem();
     private static WeaponItem shotgun = new WeaponItem();
+    private static Character mainCharacter = new Character();
+    private static Character zombieBoss = new Character();
     
     /**
      * @param args the command line arguments
@@ -58,6 +61,20 @@ public class Hemorrhage {
             
           burger.setHealthPoints(50);
             burger.setQuantityInStock(5);
+            
+       mainCharacter.setName("Chuck");
+       mainCharacter.setAtkPower(40);
+       mainCharacter.setHealth(100);
+       mainCharacter.setDescription("awesome dude");
+       mainCharacter.setMapCoordinateX(2);
+       mainCharacter.setMapCoordinateY(3);
+       
+       zombieBoss.setName("Da Boss");
+       zombieBoss.setAtkPower(30);
+       zombieBoss.setHealth(80);
+       zombieBoss.setDescription("He Da Boss");
+       zombieBoss.setMapCoordinateX(2);
+       zombieBoss.setMapCoordinateY(3);
             
        StartProgramView startProgramView = new StartProgramView();
        startProgramView.display();
@@ -139,6 +156,22 @@ public class Hemorrhage {
 
     public static void setBurger(HealthItem burger) {
         Hemorrhage.burger = burger;
+    }
+
+    public static Character getMainCharacter() {
+        return mainCharacter;
+    }
+
+    public static void setMainCharacter(Character mainCharacter) {
+        Hemorrhage.mainCharacter = mainCharacter;
+    }
+
+    public static Character getZombieBoss() {
+        return zombieBoss;
+    }
+
+    public static void setZombieBoss(Character zombieBoss) {
+        Hemorrhage.zombieBoss = zombieBoss;
     }
     
 }

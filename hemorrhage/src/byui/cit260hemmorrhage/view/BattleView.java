@@ -15,76 +15,49 @@ import hemorrhage.Hemorrhage;
  *
  * @author Douglas
  */
-public class BattleView {
+public class BattleView extends View{
 
     public long newHealth = 0;
     private static WeaponItem weaponchoice = null;
     private String prompt;
     
     public BattleView() {
-        this.prompt = ("\nYou are about to attack a zombie."
+        super("\nYou are about to attack a zombie."
                   + "\nWhich weapon from your pack would you like to use?"
-                  + "\nIf you don't want to attack enter RUN.");
+                  + "\nIf you don't want to attack enter E.");
         
     }
-    void displayBattleView(Character mainCharacter,Character zombieBoss) {
-         Boolean done = false;
-       do {
-           
-           String weaponChoice = this.getWeaponChoice();
-           if (weaponChoice.toUpperCase().equals("RUN"))
-               return;
-           
-           done = this.doAction(weaponChoice, mainCharacter, zombieBoss);
-           
-       } while(!done);
-    }
+   
     
-    private String getWeaponChoice() {
-        Scanner keyboard = new Scanner(System.in);
-      String value = "";
-      boolean valid = false;
-      
-      while (!valid) {
-          System.out.println("\n"+ this.prompt);
-          
-          value = keyboard.nextLine();
-          value = value.trim();
-          
-          if (value.length() < 1) {
-              System.out.println("\nInvalid value: value cannot be blank");
-              continue;
-              
-          }
-          
-          break;
-      }
-      
-      return value;
-    }
-
-    
-    public boolean doAction(String choice, Character mainCharacter, Character zombieBoss) {
+   
+    @Override
+    public boolean doAction(String choice) {
         
         choice = choice.toUpperCase();
         long weaponDmg = 0;
+        Character mainCharacter = Hemorrhage.getMainCharacter();
+        Character zombieBoss = Hemorrhage.getZombieBoss();
         
-        
-       if (choice == "KNIFE") {
-           
+       switch(choice) {
+               case "KNIFE":
                  WeaponItem weaponChoice = Hemorrhage.getKnife();
                  weaponDmg = weaponChoice.getDamage();
-    }else if(choice == "BAT") {
-               WeaponItem weaponChoice = Hemorrhage.getBat();
+                 break;
+               case "BAT":
+               weaponChoice = Hemorrhage.getBat();
                weaponDmg = weaponChoice.getDamage();
-    }else if(choice == "Pistol") {
-               WeaponItem weaponChoice = Hemorrhage.getPistol();
+               break;
+               case "PISTOL":
+               weaponChoice = Hemorrhage.getPistol();
                weaponDmg = weaponChoice.getDamage();
-    }else if(choice == "SHOTGUN") {
-               WeaponItem weaponChoice = Hemorrhage.getShotgun();
+               break;
+               case "SHOTGUN":
+               weaponChoice = Hemorrhage.getShotgun();
                weaponDmg = weaponChoice.getDamage();
-    }else {
+               break;
+               default:
                System.out.println("\n*** Invalid selection *** Try Again");
+               break;
        }
        
         
