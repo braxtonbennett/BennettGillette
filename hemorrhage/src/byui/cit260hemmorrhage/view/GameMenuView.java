@@ -127,7 +127,8 @@ public class GameMenuView extends View{
     }
 
     private void moveLocation() {
-       System.out.println("\n*** moveLocation() called***");
+       MoveView moveView = new MoveView();
+       moveView.display();
     }
 
     private void lookAround() {
