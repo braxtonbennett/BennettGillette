@@ -6,6 +6,7 @@
 package byui.cit260hemmorrhage.view;
 import byui.cit260.hemorrhage.model.Character;
 import hemorrhage.Hemorrhage;
+import java.awt.Point;
 /**
  *
  * @author Douglas
@@ -52,34 +53,38 @@ public class MoveView extends View{
 
     private void moveNorth() {
         Character mainCharacter = Hemorrhage.getMainCharacter();
-        long yCoordinate = mainCharacter.getMapCoordinateY();
+        Point coordinates = mainCharacter.getCoordinates();
+        int yCoordinate = coordinates.y;
         yCoordinate += 1;
-        mainCharacter.setMapCoordinateY(yCoordinate);
+        mainCharacter.setCoordinates(coordinates.x, yCoordinate);
         Hemorrhage.setMainCharacter(mainCharacter);
         
     }
 
     private void moveSouth() {
         Character mainCharacter = Hemorrhage.getMainCharacter();
-        long yCoordinate = mainCharacter.getMapCoordinateY();
+        Point coordinates = mainCharacter.getCoordinates();
+        int yCoordinate = coordinates.y;
         yCoordinate -= 1;
-        mainCharacter.setMapCoordinateY(yCoordinate);
+        mainCharacter.setCoordinates(coordinates.x, yCoordinate);
         Hemorrhage.setMainCharacter(mainCharacter);
     }
 
     private void moveEast() {
         Character mainCharacter = Hemorrhage.getMainCharacter();
-        long xCoordinate = mainCharacter.getMapCoordinateX();
+        Point coordinates = mainCharacter.getCoordinates();
+        int xCoordinate = coordinates.x;
         xCoordinate += 1;
-        mainCharacter.setMapCoordinateX(xCoordinate);
+        mainCharacter.setCoordinates(xCoordinate, coordinates.y);
         Hemorrhage.setMainCharacter(mainCharacter);
     }
 
     private void moveWest() {
         Character mainCharacter = Hemorrhage.getMainCharacter();
-        long xCoordinate = mainCharacter.getMapCoordinateX();
+        Point coordinates = mainCharacter.getCoordinates();
+        int xCoordinate = coordinates.x;
         xCoordinate -= 1;
-        mainCharacter.setMapCoordinateX(xCoordinate);
+        mainCharacter.setCoordinates(xCoordinate, coordinates.y);
         Hemorrhage.setMainCharacter(mainCharacter);
     }
     

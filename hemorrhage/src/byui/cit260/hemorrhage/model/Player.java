@@ -17,7 +17,8 @@ public class Player implements Serializable{
     //class instance variabls
     private String name;
     private double bestTime;
-
+    private Character character;
+    
     public Player() {
     }
 
@@ -37,6 +38,15 @@ public class Player implements Serializable{
     public void setBestTime(double bestTime) {
         this.bestTime = bestTime;
     }
+
+    public Character getCharacter() {
+        return character;
+    }
+
+    public void setCharacter(Character character) {
+        this.character = character;
+    }
+    
 @Override
     public String toString() {
         return "Player{" + "name=" + name + ", bestTime=" + bestTime + '}';

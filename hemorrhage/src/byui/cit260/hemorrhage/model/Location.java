@@ -5,32 +5,64 @@
  */
 package byui.cit260.hemorrhage.model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Braxton
  */
 public class Location {
-    private long row;
-    private long column;
+    private int row;
+    private int column;
+    private Scene scene;
+    private ArrayList<Character> characters;
+    private ArrayList<Item> items;  
+    
+    
 
     public Location() {
     }
 
-    public long getRow() {
+    public int getRow() {
         return row;
     }
 
-    public void setRow(long row) {
+    public void setRow(int row) {
         this.row = row;
     }
 
-    public long getColumn() {
+    public int getColumn() {
         return column;
     }
 
-    public void setColumn(long column) {
+    public void setColumn(int column) {
         this.column = column;
     }
+
+    public Scene getScene() {
+        return scene;
+    }
+
+    public void setScene(Scene scene) {
+        this.scene = scene;
+    }
+
+    public ArrayList<Character> getCharacters() {
+        return characters;
+    }
+
+    public void setCharacters(ArrayList<Character> characters) {
+        this.characters = characters;
+    }
+
+    public ArrayList<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(ArrayList<Item> items) {
+        this.items = items;
+    }
+
 
     @Override
     public String toString() {

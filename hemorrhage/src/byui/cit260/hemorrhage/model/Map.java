@@ -9,62 +9,51 @@ package byui.cit260.hemorrhage.model;
  *
  * @author Braxton
  */
-public class Map {
-    private long rowCount;
-    private long columnCount;
+public enum Map {
+    
+    rexburg(2,2),
+    newYork(3,2),
+    lA(3,2),
+    lasVegas(3,2),
+    houston(3,2);
+    
+    private final int rowCount;
+    private final int columnCount;
+    private final Location[][] locations;
 
-    public Map() {
-    }
-
-    public long getRowCount() {
-        return rowCount;
-    }
-
-    public void setRowCount(long rowCount) {
+    Map(int rowCount, int columnCount) {
         this.rowCount = rowCount;
-    }
-
-    public long getColumnCount() {
-        return columnCount;
-    }
-
-    public void setColumnCount(long columnCount) {
         this.columnCount = columnCount;
+        this.locations = new Location[rowCount][columnCount];
+        
+        for (int row = 0; row < rowCount; row++ ) {
+            for (int column = 0; column < columnCount; column++ ) {
+                Location location = new Location();
+                location.setColumn(column);
+                location.setRow(row);
+                
+                locations[row][column] = location;
+                
+                
+                
+            }
+        }
+        
     }
 
-    @Override
-    public String toString() {
-        return "Map{" + "rowCount=" + rowCount + ", columnCount=" + columnCount + '}';
+    public int getRowCount() {
+        return this.rowCount;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 67 * hash + (int) (this.rowCount ^ (this.rowCount >>> 32));
-        hash = 67 * hash + (int) (this.columnCount ^ (this.columnCount >>> 32));
-        return hash;
+
+    public int getColumnCount() {
+        return this.columnCount;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Map other = (Map) obj;
-        if (this.rowCount != other.rowCount) {
-            return false;
-        }
-        if (this.columnCount != other.columnCount) {
-            return false;
-        }
-        return true;
+    public Location[][] getLocations() {
+        return locations;
     }
+ 
     
     
 }

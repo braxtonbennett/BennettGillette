@@ -7,6 +7,12 @@ package byui.cit260hemmorrhage.view;
 
 import java.util.Scanner;
 import byui.cit260.hemorrhage.model.Character;
+import byui.cit260.hemorrhage.model.Game;
+import byui.cit260.hemorrhage.model.Item;
+import byui.cit260.hemorrhage.model.Location;
+import byui.cit260.hemorrhage.model.Map;
+import byui.cit260.hemorrhage.model.Scene;
+import hemorrhage.Hemorrhage;
 /**
  *
  * @author Douglas
@@ -75,54 +81,140 @@ public class GameMenuView extends View{
     }
 
     private void viewMap() {
-        System.out.println("\nThese are the maps of all 5 areas"
-               + "\n---------------------------------"
-               + "\n            Map 1 Bunker"
-               + "\n---------------------------------"
-               + "\n|      1,2       |       2,2    |"
-               + "\n---------------------------------"
-               + "\n|      1,1       |       2,1    |"
-               + "\n---------------------------------"
-               + "\n"
-               + "\n---------------------------------"
-               + "\n            Map 2 Vegas"
-               + "\n---------------------------------"
-               + "\n|      1,3       |       2,3    |"
-               + "\n---------------------------------"
-               + "\n|      1,2       |       2,2    |"
-               + "\n---------------------------------"
-               + "\n|      1,1       |       2,1    |"
-               + "\n---------------------------------"
-               + "\n"
-               + "\n---------------------------------"
-               + "\n          Map 3 New York"
-               + "\n---------------------------------"
-               + "\n|      1,3       |       2,3    |"
-               + "\n---------------------------------"
-               + "\n|      1,2       |       2,2    |"
-               + "\n---------------------------------"
-               + "\n|      1,1       |       2,1    |"
-               + "\n---------------------------------"
-               + "\n"
-               + "\n---------------------------------"
-               + "\n          Map 4 Houston"
-               + "\n---------------------------------"
-               + "\n|      1,3       |       2,3    |"
-               + "\n---------------------------------"
-               + "\n|      1,2       |       2,2    |"
-               + "\n---------------------------------"
-               + "\n|      1,1       |       2,1    |"
-               + "\n---------------------------------"
-               + "\n"
-               + "\n---------------------------------"
-               + "\n         Map 5 Los Angeles"
-               + "\n---------------------------------"
-               + "\n|      1,3       |       2,3    |"
-               + "\n---------------------------------"
-               + "\n|      1,2       |       2,2    |"
-               + "\n---------------------------------"
-               + "\n|      1,1       |       2,1    |"
-               + "\n---------------------------------");
+        System.out.println("\nThese are the maps of all 5 areas");
+              Location[][] rexburg = Map.rexburg.getLocations();
+              Location[][] lasVegas = Map.lasVegas.getLocations();
+              Location[][] lA = Map.lA.getLocations();
+              Location[][] newYork = Map.newYork.getLocations();
+              Location[][] houston = Map.houston.getLocations();
+              
+              int rowNo = 0;
+              int rowNum = -1;
+              int columnNum = 0;
+              
+              System.out.println("\n                 All Maps");
+             
+              System.out.println("\n"
+                      + "\n                 Rexburg Map");
+              System.out.println("    1     2  ");
+              for (Location[] row : rexburg) {
+                  rowNo++;
+                  rowNum++;
+                  System.out.println("\n---------------"
+                          + "\n"+ rowNo);
+                  int columnNo = -1;
+                  for (Location column : row) {
+                      columnNo++;
+                  Location location = rexburg[rowNum][columnNo];
+                  Scene scene = location.getScene();
+                      System.out.print("|  "+scene.getMapSymbol()+"  ");
+                      
+                  }
+                  System.out.print("|");
+                  
+              }
+              System.out.println("\n---------------");
+              
+              rowNo = 0;
+              rowNum = -1;
+              columnNum = 0;
+              System.out.println("\n"
+                      + "\n                 Las Vegas Map");
+              System.out.println("    1     2  ");
+              for (Location[] row : lasVegas) {
+                  rowNo++;
+                  rowNum++;
+                  System.out.println("\n---------------"
+                          + "\n"+ rowNo);
+                  int columnNo = -1;
+                  for (Location column : row) {
+                      columnNo++;
+                  Location location = lasVegas[rowNum][columnNo];
+                  Scene scene = location.getScene();
+                      System.out.print("|  "+scene.getMapSymbol()+"  ");
+                      
+                  }
+                  System.out.print("|");
+                  
+              }
+              System.out.println("\n---------------");
+              
+               rowNo = 0;
+              rowNum = -1;
+              columnNum = 0;
+              System.out.println("\n"
+                      + "\n                 LA Map");
+              System.out.println("    1     2  ");
+              for (Location[] row : lA) {
+                  rowNo++;
+                  rowNum++;
+                  System.out.println("\n---------------"
+                          + "\n"+ rowNo);
+                  int columnNo = -1;
+                  for (Location column : row) {
+                      columnNo++;
+                  Location location = lA[rowNum][columnNo];
+                  Scene scene = location.getScene();
+                      System.out.print("|  "+scene.getMapSymbol()+"  ");
+                      
+                  }
+                  System.out.print("|");
+                  
+              }
+              System.out.println("\n---------------");
+              
+               rowNo = 0;
+              rowNum = -1;
+              columnNum = 0;
+              System.out.println("\n"
+                      + "\n                 New York Map");
+              System.out.println("    1     2  ");
+              for (Location[] row : newYork) {
+                  rowNo++;
+                  rowNum++;
+                  System.out.println("\n---------------"
+                          + "\n"+ rowNo);
+                  int columnNo = -1;
+                  for (Location column : row) {
+                      columnNo++;
+                  Location location = newYork[rowNum][columnNo];
+                  Scene scene = location.getScene();
+                      System.out.print("|  "+scene.getMapSymbol()+"  ");
+                      
+                  }
+                  System.out.print("|");
+                  
+              }
+              System.out.println("\n---------------");
+              
+              rowNo = 0;
+              rowNum = -1;
+              columnNum = 0;
+              
+              System.out.println("\n"
+                      + "\n                 Houston Map");
+              System.out.println("    1     2  ");
+              for (Location[] row : houston) {
+                  rowNo++;
+                  rowNum++;
+                  System.out.println("\n---------------"
+                          + "\n"+ rowNo);
+                  int columnNo = -1;
+                  for (Location column : row) {
+                      columnNo++;
+                  Location location = houston[rowNum][columnNo];
+                  Scene scene = location.getScene();
+                      System.out.print("|  "+scene.getMapSymbol()+"  ");
+                      
+                  }
+                  System.out.print("|");
+                  
+              }
+              System.out.println("\n---------------");
+              
+              
+              
+              
         
     }
 
@@ -146,7 +238,29 @@ public class GameMenuView extends View{
     }
 
     private void viewInventory() {
-        System.out.println("\n*** viewInventory() called***");
+        StringBuilder line;
+        
+        Game game = Hemorrhage.getCurrentGame();
+        Item[] items = game.getItem();
+        
+        System.out.println("\n              Inventory Items");
+        line = new StringBuilder("                                   ");
+        line.insert(0,"DESCRIPTION");
+        line.insert(20,"IN STOCK");
+        System.out.println(line.toString());
+        
+        for (Item item: items){
+            line = new StringBuilder("                                   ");
+            line.insert(0,item.getDescription());
+            line.insert(23, item.getQuantityInStock());
+            
+            System.out.println(line.toString());
+            
+            
+        }
+        
+        
+        
     }
 
     private void viewGlossary() {

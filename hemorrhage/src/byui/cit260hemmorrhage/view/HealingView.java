@@ -65,8 +65,7 @@ public class HealingView extends View{
                System.out.println("\n*** Invalid selection *** Try Again");
                break;
        }
-       CharacterControl characterControl = new CharacterControl();
-            long newHealth = characterControl.getNewHealth(55, quantity, healthPoint);
+            long newHealth = CharacterControl.getNewHealth(55, quantity, healthPoint);
        return false;
     }
 

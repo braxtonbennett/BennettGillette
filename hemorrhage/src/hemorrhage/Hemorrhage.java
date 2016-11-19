@@ -38,19 +38,19 @@ public class Hemorrhage {
     public static void main(String[] args) {
        
        knife.setDamage(10);
-       knife.setName("KNIFE");
+       knife.setDescription("KNIFE");
        knife.setQuantityInStock(1);
        
        pistol.setDamage(20);
-       pistol.setName("PISTOL");
+       pistol.setDescription("PISTOL");
        pistol.setQuantityInStock(1);
        
        bat.setDamage(5);
-       bat.setName("BAT");
+       bat.setDescription("BAT");
        bat.setQuantityInStock(1);
        
        shotgun.setDamage(20);
-       shotgun.setName("SHOTGUN");
+       shotgun.setDescription("SHOTGUN");
        shotgun.setQuantityInStock(1);
        
         chicken.setHealthPoints(10);
@@ -66,15 +66,11 @@ public class Hemorrhage {
        mainCharacter.setAtkPower(40);
        mainCharacter.setHealth(100);
        mainCharacter.setDescription("awesome dude");
-       mainCharacter.setMapCoordinateX(2);
-       mainCharacter.setMapCoordinateY(3);
        
        zombieBoss.setName("Da Boss");
        zombieBoss.setAtkPower(30);
        zombieBoss.setHealth(80);
        zombieBoss.setDescription("He Da Boss");
-       zombieBoss.setMapCoordinateX(2);
-       zombieBoss.setMapCoordinateY(3);
             
        StartProgramView startProgramView = new StartProgramView();
        startProgramView.display();

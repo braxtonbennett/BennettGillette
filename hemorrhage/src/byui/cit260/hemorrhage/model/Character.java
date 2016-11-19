@@ -5,6 +5,7 @@
  */
 package byui.cit260.hemorrhage.model;
 
+import java.awt.Point;
 import java.util.Objects;
 import java.io.Serializable;
 /**
@@ -15,10 +16,10 @@ public class Character implements Serializable{
     
      private String name;
      private String description;
-     private long mapCoordinateX;
-     private long mapCoordinateY;
+     private Point coordinates;
      private long atkPower;
      private long health;
+     private Pack pack;
 
     public Character() {
     }
@@ -39,20 +40,12 @@ public class Character implements Serializable{
         this.description = description;
     }
 
-    public long getMapCoordinateX() {
-        return mapCoordinateX;
+    public Point getCoordinates() {
+        return coordinates;
     }
 
-    public void setMapCoordinateX(long mapCoordinateX) {
-        this.mapCoordinateX = mapCoordinateX;
-    }
-
-    public long getMapCoordinateY() {
-        return mapCoordinateY;
-    }
-
-    public void setMapCoordinateY(long mapCoordinateY) {
-        this.mapCoordinateY = mapCoordinateY;
+    public void setCoordinates(int x, int y) {
+        this.coordinates = coordinates;
     }
 
     public long getAtkPower() {
@@ -71,21 +64,28 @@ public class Character implements Serializable{
         this.health = health;
     }
 
+    public Pack getPack() {
+        return pack;
+    }
 
+    public void setPack(Pack pack) {
+        this.pack = pack;
+    }
+
+    
     @Override
     public String toString() {
-        return "Character{" + "name=" + name + ", description=" + description + ", mapCoordinateX=" + mapCoordinateX + ", mapCoordinateY=" + mapCoordinateY + ", atkPower=" + atkPower + ", health=" + health + '}';
+        return "Character{" + "name=" + name + ", description=" + description + ", coordinates=" + coordinates + ", atkPower=" + atkPower + ", health=" + health + '}';
     }
 
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 41 * hash + Objects.hashCode(this.name);
-        hash = 41 * hash + Objects.hashCode(this.description);
-        hash = 41 * hash + (int) (this.mapCoordinateX ^ (this.mapCoordinateX >>> 32));
-        hash = 41 * hash + (int) (this.mapCoordinateY ^ (this.mapCoordinateY >>> 32));
-        hash = 41 * hash + (int) (this.atkPower ^ (this.atkPower >>> 32));
-        hash = 41 * hash + (int) (this.health ^ (this.health >>> 32));
+        hash = 17 * hash + Objects.hashCode(this.name);
+        hash = 17 * hash + Objects.hashCode(this.description);
+        hash = 17 * hash + Objects.hashCode(this.coordinates);
+        hash = 17 * hash + (int) (this.atkPower ^ (this.atkPower >>> 32));
+        hash = 17 * hash + (int) (this.health ^ (this.health >>> 32));
         return hash;
     }
 
@@ -101,27 +101,27 @@ public class Character implements Serializable{
             return false;
         }
         final Character other = (Character) obj;
-        if (this.mapCoordinateX != other.mapCoordinateX) {
-            return false;
-        }
-        if (this.mapCoordinateY != other.mapCoordinateY) {
-            return false;
-        }
         if (this.atkPower != other.atkPower) {
             return false;
         }
         if (this.health != other.health) {
             return false;
         }
-        
         if (!Objects.equals(this.name, other.name)) {
             return false;
         }
         if (!Objects.equals(this.description, other.description)) {
             return false;
         }
+        if (!Objects.equals(this.coordinates, other.coordinates)) {
+            return false;
+        }
         return true;
     }
+
+    
+
+    
     
      
 }

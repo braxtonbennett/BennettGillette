@@ -14,6 +14,13 @@ public class Game implements Serializable{
     
     private double totalTime;
     private long noPeople;
+    private Player player;
+
+    
+    Character[] character;
+    Item[] item;
+    Pack[] pack;
+    
 
     public Game() {
     }
@@ -33,6 +40,40 @@ public class Game implements Serializable{
     public void setNoPeople(long noPeople) {
         this.noPeople = noPeople;
     }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
+    public Character[] getCharacter() {
+        return character;
+    }
+
+    public void setCharacter(Character[] character) {
+        this.character = character;
+    }
+
+    public Item[] getItem() {
+        return item;
+    }
+
+    public void setItem(Item[] Item) {
+        this.item = Item;
+    }
+
+    public Pack[] getPack() {
+        return pack;
+    }
+
+    public void setPack(Pack[] pack) {
+        this.pack = pack;
+    }
+    
+    
 
     @Override
     public String toString() {
@@ -67,6 +108,7 @@ public class Game implements Serializable{
         }
         return true;
     }
+
     
     
 }
