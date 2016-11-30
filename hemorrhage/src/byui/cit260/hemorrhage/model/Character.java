@@ -20,6 +20,7 @@ public class Character implements Serializable{
      private long atkPower;
      private long health;
      private Pack pack;
+     private long mapNo;
 
     public Character() {
     }
@@ -45,7 +46,16 @@ public class Character implements Serializable{
     }
 
     public void setCoordinates(int x, int y) {
-        this.coordinates = coordinates;
+        coordinates.x = x;
+        coordinates.y = y;
+    }
+
+    public long getMapNo() {
+        return mapNo;
+    }
+
+    public void setMapNo(long mapNo) {
+        this.mapNo = mapNo;
     }
 
     public long getAtkPower() {

@@ -5,14 +5,18 @@
  */
 package byui.cit260hemmorrhage.view;
 
+import byui.cit260.hemorrhage.control.MapControl;
 import java.util.Scanner;
 import byui.cit260.hemorrhage.model.Character;
 import byui.cit260.hemorrhage.model.Game;
 import byui.cit260.hemorrhage.model.Item;
 import byui.cit260.hemorrhage.model.Location;
 import byui.cit260.hemorrhage.model.Map;
+import byui.cit260.hemorrhage.model.Player;
 import byui.cit260.hemorrhage.model.Scene;
 import hemorrhage.Hemorrhage;
+import java.awt.Point;
+import java.util.ArrayList;
 /**
  *
  * @author Douglas
@@ -35,6 +39,7 @@ public class GameMenuView extends View{
                 + "\n I - View Inventory"
                 + "\n G - View Glossary"
                 + "\n H - Help Menu"
+                + "\n E - Exit"
                 + "\n-----------------------------------------------------");
     }
 
@@ -100,7 +105,7 @@ public class GameMenuView extends View{
               for (Location[] row : rexburg) {
                   rowNo++;
                   rowNum++;
-                  System.out.println("\n---------------"
+                  System.out.print("\n----------------"
                           + "\n"+ rowNo);
                   int columnNo = -1;
                   for (Location column : row) {
@@ -113,7 +118,7 @@ public class GameMenuView extends View{
                   System.out.print("|");
                   
               }
-              System.out.println("\n---------------");
+              System.out.println("\n----------------");
               
               rowNo = 0;
               rowNum = -1;
@@ -124,7 +129,7 @@ public class GameMenuView extends View{
               for (Location[] row : lasVegas) {
                   rowNo++;
                   rowNum++;
-                  System.out.println("\n---------------"
+                  System.out.print("\n----------------"
                           + "\n"+ rowNo);
                   int columnNo = -1;
                   for (Location column : row) {
@@ -137,7 +142,7 @@ public class GameMenuView extends View{
                   System.out.print("|");
                   
               }
-              System.out.println("\n---------------");
+              System.out.println("\n----------------");
               
                rowNo = 0;
               rowNum = -1;
@@ -148,7 +153,7 @@ public class GameMenuView extends View{
               for (Location[] row : lA) {
                   rowNo++;
                   rowNum++;
-                  System.out.println("\n---------------"
+                  System.out.print("\n----------------"
                           + "\n"+ rowNo);
                   int columnNo = -1;
                   for (Location column : row) {
@@ -161,7 +166,7 @@ public class GameMenuView extends View{
                   System.out.print("|");
                   
               }
-              System.out.println("\n---------------");
+              System.out.println("\n----------------");
               
                rowNo = 0;
               rowNum = -1;
@@ -172,7 +177,7 @@ public class GameMenuView extends View{
               for (Location[] row : newYork) {
                   rowNo++;
                   rowNum++;
-                  System.out.println("\n---------------"
+                  System.out.print("\n----------------"
                           + "\n"+ rowNo);
                   int columnNo = -1;
                   for (Location column : row) {
@@ -185,7 +190,7 @@ public class GameMenuView extends View{
                   System.out.print("|");
                   
               }
-              System.out.println("\n---------------");
+              System.out.println("\n----------------");
               
               rowNo = 0;
               rowNum = -1;
@@ -197,7 +202,7 @@ public class GameMenuView extends View{
               for (Location[] row : houston) {
                   rowNo++;
                   rowNum++;
-                  System.out.println("\n---------------"
+                  System.out.print("\n----------------"
                           + "\n"+ rowNo);
                   int columnNo = -1;
                   for (Location column : row) {
@@ -210,7 +215,7 @@ public class GameMenuView extends View{
                   System.out.print("|");
                   
               }
-              System.out.println("\n---------------");
+              System.out.println("\n----------------");
               
               
               
@@ -228,6 +233,29 @@ public class GameMenuView extends View{
     }
 
     private void searchLocation() {
+        StringBuilder line;
+        Game game = Hemorrhage.getCurrentGame();
+        Player player = game.getPlayer();
+        Character mainCharacter = player.getCharacter();
+        Point characterLocation = mainCharacter.getCoordinates();
+        Long mapNo = mainCharacter.getMapNo();
+        ArrayList<Item> itemsAtLocation = MapControl.searchLocation(characterLocation, mapNo);
+        System.out.println("\n              Items at your Location");
+        line = new StringBuilder("                                   ");
+        line.insert(0,"DESCRIPTION");
+        line.insert(20,"IN STOCK");
+        System.out.println(line.toString());
+        
+        for (Item item:itemsAtLocation){
+            line = new StringBuilder("                                   ");
+            line.insert(0,item.getDescription());
+            line.insert(23, item.getQuantityInStock());
+            System.out.println(line.toString());
+            
+               
+        }
+        
+        
         System.out.println("\n*** searchLocation() called***");
     }
 
@@ -253,7 +281,6 @@ public class GameMenuView extends View{
             line = new StringBuilder("                                   ");
             line.insert(0,item.getDescription());
             line.insert(23, item.getQuantityInStock());
-            
             System.out.println(line.toString());
             
             

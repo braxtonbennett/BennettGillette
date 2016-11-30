@@ -5,6 +5,7 @@
  */
 package byui.cit260.hemorrhage.model;
 
+import java.awt.Point;
 import java.util.Objects;
 import java.io.Serializable;
 /**
@@ -15,7 +16,10 @@ public class Item implements Serializable{
     
     private String description;
     private long quantityInStock;
-
+    private Point coordinates = new Point();
+    
+    private long mapNo;
+            
     public Item() {
     }
 
@@ -33,6 +37,23 @@ public class Item implements Serializable{
 
     public void setQuantityInStock(long quantityInStock) {
         this.quantityInStock = quantityInStock;
+    }
+
+    public Point getCoordinates() {
+        return coordinates;
+    }
+
+    public void setCoordinates(int x, int y) {
+        coordinates.x = x;
+        coordinates.y = y;
+    }
+
+    public long getMapNo() {
+        return mapNo;
+    }
+
+    public void setMapNo(long mapNo) {
+        this.mapNo = mapNo;
     }
 
     @Override

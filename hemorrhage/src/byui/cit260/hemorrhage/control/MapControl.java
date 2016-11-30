@@ -5,9 +5,14 @@
  */
 package byui.cit260.hemorrhage.control;
 
+import byui.cit260.hemorrhage.model.Game;
+import byui.cit260.hemorrhage.model.Item;
 import byui.cit260.hemorrhage.model.Location;
 import byui.cit260.hemorrhage.model.Map;
 import byui.cit260.hemorrhage.model.Scene;
+import hemorrhage.Hemorrhage;
+import java.awt.Point;
+import java.util.ArrayList;
 
 
 /**
@@ -94,6 +99,21 @@ public class MapControl {
         System.out.println("moveCharactersToStart() called");
     }
 
+    public static ArrayList<Item> searchLocation(Point coordinates, Long characterMapNo){
+        
+        ArrayList<Item> itemsAtLocation = new ArrayList<>();
+        Game game = Hemorrhage.getCurrentGame();
+        Item[] items = game.getItem();
+        for (Item item: items){
+            Point point=item.getCoordinates();
+            long mapNo = item.getMapNo();
+            if(mapNo == characterMapNo )
+            if(point == coordinates){
+                itemsAtLocation.add(item);
+            }
+    }
+        return itemsAtLocation;
+    }
    
     
 }

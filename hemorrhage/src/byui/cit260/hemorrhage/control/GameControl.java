@@ -15,6 +15,7 @@ import byui.cit260.hemorrhage.model.Character;
 import byui.cit260.hemorrhage.model.Location;
 import byui.cit260.hemorrhage.model.Map;
 import hemorrhage.Hemorrhage;
+import java.awt.Point;
 
 /**
  *
@@ -69,64 +70,85 @@ public class GameControl {
         knife.setDamage(10);
         knife.setDescription("KNIFE");
         knife.setQuantityInStock(0);
+        knife.setCoordinates(1,1);
+        knife.setMapNo(1);
         itemList[0] = knife;
         
         WeaponItem pistol = new WeaponItem();
         pistol.setDamage(20);
         pistol.setDescription("PISTOL");
         pistol.setQuantityInStock(0);
+        pistol.setCoordinates(1,1);
+        pistol.setMapNo(2);
         itemList[1] = pistol;
        
         WeaponItem bat = new WeaponItem();
         bat.setDamage(5);
         bat.setDescription("BAT");
         bat.setQuantityInStock(0);
+        bat.setCoordinates(1,1);
+        bat.setMapNo(3);
         itemList[2] = bat;
        
         WeaponItem shotgun = new WeaponItem();
         shotgun.setDamage(20);
         shotgun.setDescription("SHOTGUN");
         shotgun.setQuantityInStock(0);
+        bat.setCoordinates(0,0);
+        bat.setMapNo(1);
         itemList[3] = shotgun;
        
         HealthItem chicken = new HealthItem();
         chicken.setDescription("CHICKEN");
         chicken.setHealthPoints(10);
         chicken.setQuantityInStock(0);
+        chicken.setCoordinates(0,0);
+        chicken.setMapNo(2);
         itemList[4] = chicken;
         
         HealthItem steak = new HealthItem();
         steak.setDescription("STEAK");
         steak.setHealthPoints(25);
         steak.setQuantityInStock(0);
+        steak.setCoordinates(0,0);
+        steak.setMapNo(3);
         itemList[5] = steak;
         
         HealthItem burger = new HealthItem();
         burger.setDescription("BURGER");
         burger.setHealthPoints(50);
         burger.setQuantityInStock(0);
+        burger.setCoordinates(0,1);
+        burger.setMapNo(1);
         itemList[6] = burger;
         
         Item calihari = new Item();
         calihari.setDescription("CALIHARI");
         calihari.setQuantityInStock(0);
+        calihari.setCoordinates(0,1);
+        calihari.setMapNo(2);
         itemList[7] = calihari;
         
         Item brahmi = new Item();
         brahmi.setDescription("BRAHMI");
         brahmi.setQuantityInStock(0);
+        brahmi.setCoordinates(0,1);
+        brahmi.setMapNo(3);
         itemList[8] = brahmi;
         
         Item henna = new Item();
         henna.setDescription("HENNA");
         henna.setQuantityInStock(0);
+        henna.setCoordinates(0,1);
+        henna.setMapNo(4);
         itemList[9] = henna;
         
         Item harida = new Item();
         harida.setDescription("HARIDA");
         harida.setQuantityInStock(0);
+        harida.setCoordinates(0,1);
+        harida.setMapNo(5);
         itemList[10] = brahmi;
-        
         return itemList;
     }
 
