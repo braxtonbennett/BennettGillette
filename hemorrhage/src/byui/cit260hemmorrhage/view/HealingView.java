@@ -5,101 +5,82 @@
  */
 package byui.cit260hemmorrhage.view;
 
+import byui.cit260.hemorrhage.control.CharacterControl;
+import byui.cit260.hemorrhage.model.HealthItem;
+import hemorrhage.Hemorrhage;
 import java.util.Scanner;
 
 /**
  *
  * @author jnava
  */
-public class HealingView {
+public class HealingView extends View{
+                private static HealthItem HealthChoice = null;
     
                 private String healing;
+                
     
     public HealingView() {
-        this.healing = "\n**************************************************"
+        super("\n**************************************************"
                 + "\nHealing"
                 + "\n**************************************************"
-                + "\n|C - Chicken(25points)"
-                + "\n|S - Steak(50points)"
-                + "\n|B - Burger(150points)"
+                + "\n|C - Chicken(10points)"
+                + "\n|S - Steak(25points)"
+                + "\n|B - Burger(50points)"
                 + "\n|E - Exit Help Menu"
-                + "\n**************************************************";
-    }
+                + "\n**************************************************");
+           
+                        }
      
-    
-    public void displayHealing() {
-        boolean done =  false;
-        do {
-            String healingMenuOption = this.getHealingMenuOption();
-            if (healingMenuOption.toUpperCase().equals("E"))
-                return;
-            
-            done = this.doAction(healingMenuOption);
-            
-            }
-        while (!done);
-    }
-    
-    private String getHealingMenuOption() {
-      Scanner keyboard = new Scanner(System.in);
-      String value = "";
-      boolean valid = false;
-      
-      while (!valid) {
-          System.out.println("\n" + this.healing);
-          
-          value = keyboard.nextLine();
-          value = value.trim();
-          
-          if (value.length() < 1) {
-              System.out.println("\nInvalid value: value cannot be blank");
-              continue;
-              
-          }
-          
-          break;
-      }
-      
-      return value;
+    @Override
+    public boolean doAction(String choice) {
         
-    }
-    
-    private boolean doAction(String choice) {
+        
            choice = choice.toUpperCase();
-       
+           long healthPoint = 0;
+           
+        // set displayMessage to next prompt message
+         this.displayMessage = "\nPlease enter the number of food";
+        // call getInput() to get the second value
+       String Strquantity = this.getInput();
+       long quantity = Long.parseLong(Strquantity);
+        
        switch (choice) {
            case "C":
-               this.displayChicken();
+           HealthItem healthChoice = Hemorrhage.getChicken();
+           healthPoint = healthChoice.getHealthPoints();
                break;
            case "S":
-               this:displaySteak();
+           healthChoice = Hemorrhage.getSteak();
+           healthPoint = healthChoice.getHealthPoints();
+               
                break;
            case "B":
-               this.displayBurger();
+           healthChoice = Hemorrhage.getBurger();
+           healthPoint = healthChoice.getHealthPoints();
+              
                break;
           
            default:
                System.out.println("\n*** Invalid selection *** Try Again");
                break;
        }
+            long newHealth = CharacterControl.getNewHealth(55, quantity, healthPoint);
        return false;
     }
 
-    private void displayChicken() {
+   
        
-      long health = byui.cit260.hemorrhage.control.CharacterControl.getNewHealth(50,50, 50);
-    }
+
+}
+       
     
-     private void displaySteak() {
-       long health = byui.cit260.hemorrhage.control.CharacterControl.getNewHealth(50,50, 50);
-    }
-     
-     
-      private void displayBurger() {
-        long health = byui.cit260.hemorrhage.control.CharacterControl.getNewHealth(50,50, 50);
-    }
+   
+
+   
+    
 
 
-    }
+    
     
 

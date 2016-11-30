@@ -13,12 +13,13 @@ import java.util.Scanner;
  *
  * @author Douglas
  */
-public class MainMenuView {
+public class MainMenuView extends View{
+   
     
     private String menu;
 
     public MainMenuView() {
-        this.menu = "\n"
+        super("\n"
                 + "\n----------------------------------------------------------"
                 + "\n| Main Menu"
                 + "\n----------------------------------------------------------"
@@ -27,47 +28,12 @@ public class MainMenuView {
                 + "\nQ - Quick Start"
                 + "\nH - Help Menu"
                 + "\nE - Exit Game"
-                + "\n----------------------------------------------------------";
+                + "\n----------------------------------------------------------");
     }
     
     
-    void displayMainMenuView() {
-       Boolean done = false;
-       do {
-           
-           String menuOption = this.getMenuOption();
-           if (menuOption.toUpperCase().equals("E"))
-               return;
-           
-           done = this.doAction(menuOption);
-           
-       } while(!done);
-    }
-    
-    private String getMenuOption() {
-      
-      Scanner keyboard = new Scanner(System.in);
-      String value = "";
-      boolean valid = false;
-      
-      while (!valid) {
-          System.out.println("\n" + this.menu);
-          
-          value = keyboard.nextLine();
-          value = value.trim();
-          
-          if (value.length() < 1) {
-              System.out.println("\nInvalid value: value cannot be blank");
-              continue;
-              
-          }
-          
-          break;
-      }
-      
-      return value;
-    }
-    
+
+    @Override
     public boolean doAction(String choice) {
        choice = choice.toUpperCase();
        
@@ -109,7 +75,7 @@ public class MainMenuView {
     private void displayHelpMenu() {
        HelpMenuView helpMenuView = new HelpMenuView();
        
-       helpMenuView.displayHelpMenu();
+       helpMenuView.display();
     }
     
     

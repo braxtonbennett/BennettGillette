@@ -12,6 +12,9 @@ package byui.cit260.hemorrhage.model;
 public class Pack {
     
     private long noSlots;
+    private Character character;
+    
+    Item[] item;
 
     public Pack() {
     }

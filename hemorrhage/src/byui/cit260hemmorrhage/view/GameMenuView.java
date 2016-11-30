@@ -6,16 +6,24 @@
 package byui.cit260hemmorrhage.view;
 
 import java.util.Scanner;
-
+import byui.cit260.hemorrhage.model.Character;
+import byui.cit260.hemorrhage.model.Game;
+import byui.cit260.hemorrhage.model.Item;
+import byui.cit260.hemorrhage.model.Location;
+import byui.cit260.hemorrhage.model.Map;
+import byui.cit260.hemorrhage.model.Scene;
+import hemorrhage.Hemorrhage;
 /**
  *
  * @author Douglas
  */
-class GameMenuView {
+public class GameMenuView extends View{
+    
+       
 
     private String gameMenu;
     public GameMenuView() {
-        this.gameMenu = "\n-----------------------------------------------------"
+        super("\n-----------------------------------------------------"
                 + "\n             Game Menu"
                 + "\n-----------------------------------------------------"
                 + "\n V - View Map"
@@ -23,50 +31,18 @@ class GameMenuView {
                 + "\n L - Look Around"
                 + "\n S - Search in location"
                 + "\n A - Attack Enemy"
+                + "\n X - Heal"
                 + "\n I - View Inventory"
                 + "\n G - View Glossary"
-                + "\n-----------------------------------------------------";
+                + "\n H - Help Menu"
+                + "\n-----------------------------------------------------");
     }
 
     
-    void displayMenu() {
-          boolean done =  false;
-        do {
-            String gameMenuOption = this.getGameMenuOption();
-            if (gameMenuOption.toUpperCase().equals("E"))
-                return;
-            
-            done = this.doAction(gameMenuOption);
-            
-            }
-        while (!done);
-    }
-    
-    private String getGameMenuOption() {
-      Scanner keyboard = new Scanner(System.in);
-      String value = "";
-      boolean valid = false;
-      
-      while (!valid) {
-          System.out.println("\n" + this.gameMenu);
-          
-          value = keyboard.nextLine();
-          value = value.trim();
-          
-          if (value.length() < 1) {
-              System.out.println("\nInvalid value: value cannot be blank");
-              continue;
-              
-          }
-          
-          break;
-      }
-      
-      return value;
+  
         
-    }
-
-    private boolean doAction(String choice) {
+    @Override
+    public boolean doAction(String choice) {
         choice = choice.toUpperCase();
        
        switch (choice) {
@@ -91,6 +67,9 @@ class GameMenuView {
            case "G":
                this.viewGlossary();
                break;
+            case "X":
+               this.viewHealMenu();
+               break;
            case "H":
                this.viewHelpMenu();
                break;
@@ -102,58 +81,146 @@ class GameMenuView {
     }
 
     private void viewMap() {
-        System.out.println("\n*** viewMap() called***");
+        System.out.println("\nThese are the maps of all 5 areas");
+              Location[][] rexburg = Map.rexburg.getLocations();
+              Location[][] lasVegas = Map.lasVegas.getLocations();
+              Location[][] lA = Map.lA.getLocations();
+              Location[][] newYork = Map.newYork.getLocations();
+              Location[][] houston = Map.houston.getLocations();
+              
+              int rowNo = 0;
+              int rowNum = -1;
+              int columnNum = 0;
+              
+              System.out.println("\n                 All Maps");
+             
+              System.out.println("\n"
+                      + "\n                 Rexburg Map");
+              System.out.println("    1     2  ");
+              for (Location[] row : rexburg) {
+                  rowNo++;
+                  rowNum++;
+                  System.out.println("\n---------------"
+                          + "\n"+ rowNo);
+                  int columnNo = -1;
+                  for (Location column : row) {
+                      columnNo++;
+                  Location location = rexburg[rowNum][columnNo];
+                  Scene scene = location.getScene();
+                      System.out.print("|  "+scene.getMapSymbol()+"  ");
+                      
+                  }
+                  System.out.print("|");
+                  
+              }
+              System.out.println("\n---------------");
+              
+              rowNo = 0;
+              rowNum = -1;
+              columnNum = 0;
+              System.out.println("\n"
+                      + "\n                 Las Vegas Map");
+              System.out.println("    1     2  ");
+              for (Location[] row : lasVegas) {
+                  rowNo++;
+                  rowNum++;
+                  System.out.println("\n---------------"
+                          + "\n"+ rowNo);
+                  int columnNo = -1;
+                  for (Location column : row) {
+                      columnNo++;
+                  Location location = lasVegas[rowNum][columnNo];
+                  Scene scene = location.getScene();
+                      System.out.print("|  "+scene.getMapSymbol()+"  ");
+                      
+                  }
+                  System.out.print("|");
+                  
+              }
+              System.out.println("\n---------------");
+              
+               rowNo = 0;
+              rowNum = -1;
+              columnNum = 0;
+              System.out.println("\n"
+                      + "\n                 LA Map");
+              System.out.println("    1     2  ");
+              for (Location[] row : lA) {
+                  rowNo++;
+                  rowNum++;
+                  System.out.println("\n---------------"
+                          + "\n"+ rowNo);
+                  int columnNo = -1;
+                  for (Location column : row) {
+                      columnNo++;
+                  Location location = lA[rowNum][columnNo];
+                  Scene scene = location.getScene();
+                      System.out.print("|  "+scene.getMapSymbol()+"  ");
+                      
+                  }
+                  System.out.print("|");
+                  
+              }
+              System.out.println("\n---------------");
+              
+               rowNo = 0;
+              rowNum = -1;
+              columnNum = 0;
+              System.out.println("\n"
+                      + "\n                 New York Map");
+              System.out.println("    1     2  ");
+              for (Location[] row : newYork) {
+                  rowNo++;
+                  rowNum++;
+                  System.out.println("\n---------------"
+                          + "\n"+ rowNo);
+                  int columnNo = -1;
+                  for (Location column : row) {
+                      columnNo++;
+                  Location location = newYork[rowNum][columnNo];
+                  Scene scene = location.getScene();
+                      System.out.print("|  "+scene.getMapSymbol()+"  ");
+                      
+                  }
+                  System.out.print("|");
+                  
+              }
+              System.out.println("\n---------------");
+              
+              rowNo = 0;
+              rowNum = -1;
+              columnNum = 0;
+              
+              System.out.println("\n"
+                      + "\n                 Houston Map");
+              System.out.println("    1     2  ");
+              for (Location[] row : houston) {
+                  rowNo++;
+                  rowNum++;
+                  System.out.println("\n---------------"
+                          + "\n"+ rowNo);
+                  int columnNo = -1;
+                  for (Location column : row) {
+                      columnNo++;
+                  Location location = houston[rowNum][columnNo];
+                  Scene scene = location.getScene();
+                      System.out.print("|  "+scene.getMapSymbol()+"  ");
+                      
+                  }
+                  System.out.print("|");
+                  
+              }
+              System.out.println("\n---------------");
+              
+              
+              
+              
+        
     }
 
     private void moveLocation() {
-       System.out.println("\nThese are the maps of all 5 areas"
-               + "\n---------------------------------"
-               + "\n            Map 1 Bunker"
-               + "\n---------------------------------"
-               + "\n|      1,2       |       2,2    |"
-               + "\n---------------------------------"
-               + "\n|      1,1       |       2,1    |"
-               + "\n---------------------------------"
-               + "\n"
-               + "\n---------------------------------"
-               + "\n            Map 2 Vegas"
-               + "\n---------------------------------"
-               + "\n|      1,3       |       2,3    |"
-               + "\n---------------------------------"
-               + "\n|      1,2       |       2,2    |"
-               + "\n---------------------------------"
-               + "\n|      1,1       |       2,1    |"
-               + "\n---------------------------------"
-               + "\n"
-               + "\n---------------------------------"
-               + "\n          Map 3 New York"
-               + "\n---------------------------------"
-               + "\n|      1,3       |       2,3    |"
-               + "\n---------------------------------"
-               + "\n|      1,2       |       2,2    |"
-               + "\n---------------------------------"
-               + "\n|      1,1       |       2,1    |"
-               + "\n---------------------------------"
-               + "\n"
-               + "\n---------------------------------"
-               + "\n          Map 4 Houston"
-               + "\n---------------------------------"
-               + "\n|      1,3       |       2,3    |"
-               + "\n---------------------------------"
-               + "\n|      1,2       |       2,2    |"
-               + "\n---------------------------------"
-               + "\n|      1,1       |       2,1    |"
-               + "\n---------------------------------"
-               + "\n"
-               + "\n---------------------------------"
-               + "\n         Map 5 Los Angeles"
-               + "\n---------------------------------"
-               + "\n|      1,3       |       2,3    |"
-               + "\n---------------------------------"
-               + "\n|      1,2       |       2,2    |"
-               + "\n---------------------------------"
-               + "\n|      1,1       |       2,1    |"
-               + "\n---------------------------------");
+       MoveView moveView = new MoveView();
+       moveView.display();
     }
 
     private void lookAround() {
@@ -165,11 +232,35 @@ class GameMenuView {
     }
 
     private void attackEnemy() {
-        System.out.println("\n*** attackEnemy() called***");
+       
+        BattleView battleView = new BattleView();
+        battleView.display();
     }
 
     private void viewInventory() {
-        System.out.println("\n*** viewInventory() called***");
+        StringBuilder line;
+        
+        Game game = Hemorrhage.getCurrentGame();
+        Item[] items = game.getItem();
+        
+        System.out.println("\n              Inventory Items");
+        line = new StringBuilder("                                   ");
+        line.insert(0,"DESCRIPTION");
+        line.insert(20,"IN STOCK");
+        System.out.println(line.toString());
+        
+        for (Item item: items){
+            line = new StringBuilder("                                   ");
+            line.insert(0,item.getDescription());
+            line.insert(23, item.getQuantityInStock());
+            
+            System.out.println(line.toString());
+            
+            
+        }
+        
+        
+        
     }
 
     private void viewGlossary() {
@@ -177,9 +268,14 @@ class GameMenuView {
     }
 
     private void viewHelpMenu() {
-      //  GameHelpMenuView
-      //  GameHelpMenuView gamehelpMenuView = new GameHelpMenuView();
+      GameHelpMenuView gameHelpMenuView = new GameHelpMenuView();
        
-      // gameHelpMenuView.displayGameHelpMenu();
+      gameHelpMenuView.display();
+    }
+
+    private void viewHealMenu() {
+        
+        HealingView healingView = new HealingView();
+        healingView.display();
     }
 }

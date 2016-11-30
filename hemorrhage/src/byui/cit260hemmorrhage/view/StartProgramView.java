@@ -13,13 +13,13 @@ import java.util.Scanner;
  *
  * @author Douglas
  */
-public class StartProgramView {
+public class StartProgramView extends View{
     
-    private String promptMessage;
+    
     
     public StartProgramView() {
         
-        this.promptMessage = "\nPlease enter your name";
+         super("\nPlease enter your name");
         
         this.displayBanner();
     }
@@ -38,19 +38,7 @@ public class StartProgramView {
 
     }
 
-    public void displayStartProgramView() {
-       
-        boolean done = false;
-       do {
-          
-           String playersName = this.getPlayersName();
-           if (playersName.toUpperCase().equals("Q"))
-               return;
-           
-           done = this.doAction(playersName);
-           
-       } while(!done);
-    }
+  
 
     private String getPlayersName() {
       Scanner keyboard = new Scanner(System.in);
@@ -58,7 +46,7 @@ public class StartProgramView {
       boolean valid = false;
       
       while (!valid) {
-          System.out.println("\n" + this.promptMessage);
+          System.out.println("\n" + this.displayMessage);
           
           value = keyboard.nextLine();
           value = value.trim();
@@ -75,24 +63,7 @@ public class StartProgramView {
       return value;
     }
 
-    private boolean doAction(String playersName) {
-       
-        if (playersName.length() < 2) {
-            System.out.println("\nInvalid players name:"
-                    + "The name must be greater than one charater in length");
-            return false;
-        }
-        
-        Player player = GameControl.createPlayer(playersName);
-        
-        if (player==null) {
-            System.out.println("\nError creating the player.");
-            return false;
-        }
-        
-        this.displayNextView(player);
-        return true;
-    }
+   
 
     private void displayNextView(Player player) {
         System.out.println("\n======================================="
@@ -102,7 +73,25 @@ public class StartProgramView {
         
         MainMenuView mainMenuView = new MainMenuView();
         
-        mainMenuView.displayMainMenuView();
+        mainMenuView.display();
+    }
+
+    @Override
+    public boolean doAction(String value) {
+        if (value.length() < 2) {
+            System.out.println("\nInvalid players name:"
+                    + "\nThe name must be greater than one character in length");
+            return false;
+        }
+        
+        Player player = GameControl.createPlayer(value);
+        
+        if (player==null) {
+            System.out.println("\nError Creating Player.");
+        }
+       this.displayNextView(player);
+       return true;
+       
     }
 
 }

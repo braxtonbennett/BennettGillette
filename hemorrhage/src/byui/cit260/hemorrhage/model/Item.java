@@ -13,18 +13,18 @@ import java.io.Serializable;
  */
 public class Item implements Serializable{
     
-    private String name;
+    private String description;
     private long quantityInStock;
 
     public Item() {
     }
 
-    public String getName() {
-        return name;
+    public String getDescription() {
+        return description;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDescription(String name) {
+        this.description = name;
     }
 
     public long getQuantityInStock() {
@@ -37,13 +37,13 @@ public class Item implements Serializable{
 
     @Override
     public String toString() {
-        return "Item{" + "name=" + name + ", quantityInStock=" + quantityInStock + '}';
+        return "Item{" + "name=" + description + ", quantityInStock=" + quantityInStock + '}';
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 31 * hash + Objects.hashCode(this.name);
+        hash = 31 * hash + Objects.hashCode(this.description);
         hash = 31 * hash + (int) (this.quantityInStock ^ (this.quantityInStock >>> 32));
         return hash;
     }
@@ -63,7 +63,7 @@ public class Item implements Serializable{
         if (this.quantityInStock != other.quantityInStock) {
             return false;
         }
-        if (!Objects.equals(this.name, other.name)) {
+        if (!Objects.equals(this.description, other.description)) {
             return false;
         }
         return true;
