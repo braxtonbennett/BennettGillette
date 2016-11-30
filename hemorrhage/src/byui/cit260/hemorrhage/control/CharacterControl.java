@@ -13,6 +13,7 @@ public class CharacterControl {
     public static long getNewHealth(long playerCurrentHealth, long amountOfFood, long healthPoints) {
         
         long playerMaxHealth = 50;
+        long healthPoints = 10;
        
         if (playerCurrentHealth <= 0 || amountOfFood <= 0) {
             return -1;

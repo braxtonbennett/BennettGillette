@@ -60,8 +60,8 @@ public class MainMenuView extends View{
     private void startNewGame() {
        GameControl.createNewGame(Hemorrhage.getPlayer());
        
-       GameMenuView gameMenu = new GameMenuView();
-       gameMenu.display();
+       ChampMenuView champMenu = new ChampMenuView();
+       champMenu.displayChampMenu();
     }
 
     private void startExistingGame() {
