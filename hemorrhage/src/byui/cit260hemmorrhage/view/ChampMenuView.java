@@ -5,7 +5,11 @@
  */
 package byui.cit260hemmorrhage.view;
 
+import byui.cit260.hemorrhage.control.CharacterControl;
 import byui.cit260.hemorrhage.control.GameControl;
+import byui.cit260.hemorrhage.model.Game;
+import byui.cit260.hemorrhage.model.Player;
+import byui.cit260.hemorrhage.model.Character;
 import hemorrhage.Hemorrhage;
 import java.util.Scanner;
 
@@ -24,7 +28,7 @@ class ChampMenuView {
                  +"\n************************************************"
                  + "\n[L] Lumber Jack Larry---[Q]View Stats"
                  + "\n[S] Super-fast Suzie---[W]View Stats"
-                 + "\n[I} Innovator Doc Brown---[E]View Stats"
+                 + "\n[C} Cargo Carl---[V]View Stats"
                  + "\n[B] Basic Bob---[R]View Stats"
                  + "\n***********************************************";
         
@@ -69,28 +73,28 @@ class ChampMenuView {
        
        switch (choice) {
            case "L":
-               this: chooseLarry();
+               this: chooseCharacter(2);
                break;
            case "S":
-               this: chooseSuzie();
+               this: chooseCharacter(0);
                break;
-           case "I":
-               this: chooseDoc();
+           case "C":
+               this: chooseCharacter(1);
                break;
            case "B":
-               this: chooseBob();
+               this: chooseCharacter(3);
                break;
            case "Q":
-               this: displayLarry();
+               this: displayCharacter(2);
                break;
            case "W":
-               this: displaySuzie();
+               this: displayCharacter(0);
                break;
-           case "E":
-               this: displayDoc();
+           case "V":
+               this: displayCharacter(1);
                break;
            case "R":;
-               this: displayBob();
+               this: displayCharacter(3);
                break;
            default:
                System.out.println("\n*** Invalid selection *** Try Again");
@@ -98,70 +102,29 @@ class ChampMenuView {
        }
        return false;
     }
-      private void displayLarry() {
-        System.out.println("\nLarry's Stats:"
+      private void displayCharacter(int index) {
+        Game game = Hemorrhage.getCurrentGame();
+        Player player = game.getPlayer();
+        Character[] characterList = game.getCharacter();
+        Character character = characterList[index];
+          System.out.println("\n"+ character.getName() +"'s Stats:"
                 + "\n*************************************"
-                + "\n Attack Power: 15 "
-                + "\n Health Power: 30"
-                + "\n*************************************");
-    }
-      private void displaySuzie() {
-        System.out.println("\nSuzie's Stats:"
-               + "\n*************************************"
-                + "\n Attack Power: 7"
-                + "\n Health Power: 35"
-                + "\n*************************************");
-    }
-      private void displayDoc() {
-        System.out.println("\nDoc's Stats:"
-                + "\n*************************************"
-                + "\n Attack Power: 15"
-                + "\n Health Power: 25"
-                + "\n*************************************");
-    }
-      private void displayBob() {
-        System.out.println("\nBob's Stats:"
-                + "\n*************************************"
-                + "\n Attack Power: 10"
-                + "\n Health Power: 10"
+                + "\n Attack Power: "+character.getAtkPower()
+                + "\n Health Power: "+character.getHealth()
+                + "\n Pack Size: "+character.getPack()
                 + "\n*************************************");
     }
 
-    private void chooseBob() {
-        System.out.println("/n The chooseBob() function has been called.");
-        GameControl.createNewGame(Hemorrhage.getPlayer());
-        
+    private void chooseCharacter(int index) {
+        Game game = Hemorrhage.getCurrentGame();
+        Player player = game.getPlayer();
+        Character[] characterList = game.getCharacter();
+        Character character = characterList[index];
+        System.out.println("/n You have chosen "+ character.getName() +" as your character");
+        CharacterControl.chooseCharacter(index);
         GameMenuView gameMenu = new GameMenuView();
-        gameMenu.displayMenu();
-    }
-
-    private void chooseDoc() {
-        System.out.println("/n The chooseDoc() function has been called.");
-        GameControl.createNewGame(Hemorrhage.getPlayer());
         
-        GameMenuView gameMenu = new GameMenuView();
-        gameMenu.displayMenu();
-    
-        
-    }
-
-    private void chooseSuzie() {
-        System.out.println("/n The chooseSuzie() function has been called.");
-        GameControl.createNewGame(Hemorrhage.getPlayer());
-        
-        GameMenuView gameMenu = new GameMenuView();
-        gameMenu.displayMenu();
-    
-    }
-
-    private void chooseLarry() {
-        System.out.println("/n The chooseLarry() function has been called.");
-        GameControl.createNewGame(Hemorrhage.getPlayer());
-        
-        GameMenuView gameMenu = new GameMenuView();
-        gameMenu.displayMenu();
-    
-       
+        gameMenu.display();
     }
     
 }

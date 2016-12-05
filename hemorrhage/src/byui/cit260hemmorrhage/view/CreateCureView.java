@@ -77,10 +77,7 @@ class CreateCureView {
            String ingredient4 = determineIngredient(choice);
          
            
-           call a control funtion to determine if it's the correct set of ingredients
-           if it is then print congratulations!
-           else It'll say try again
-                   else values are invalid then message that inputs were invalid'
+          
        
        
        return false;

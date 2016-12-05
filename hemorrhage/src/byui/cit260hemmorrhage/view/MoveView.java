@@ -5,6 +5,8 @@
  */
 package byui.cit260hemmorrhage.view;
 import byui.cit260.hemorrhage.model.Character;
+import byui.cit260.hemorrhage.model.Game;
+import byui.cit260.hemorrhage.model.Player;
 import hemorrhage.Hemorrhage;
 import java.awt.Point;
 /**
@@ -52,7 +54,9 @@ public class MoveView extends View{
     }
 
     private void moveNorth() {
-        Character mainCharacter = Hemorrhage.getMainCharacter();
+        Game game = Hemorrhage.getCurrentGame();
+        Player player = game.getPlayer();
+        Character mainCharacter = player.getCharacter();
         Point coordinates = mainCharacter.getCoordinates();
         int yCoordinate = coordinates.y;
         yCoordinate += 1;
@@ -62,7 +66,9 @@ public class MoveView extends View{
     }
 
     private void moveSouth() {
-        Character mainCharacter = Hemorrhage.getMainCharacter();
+        Game game = Hemorrhage.getCurrentGame();
+        Player player = game.getPlayer();
+        Character mainCharacter = player.getCharacter();
         Point coordinates = mainCharacter.getCoordinates();
         int yCoordinate = coordinates.y;
         yCoordinate -= 1;
@@ -71,7 +77,9 @@ public class MoveView extends View{
     }
 
     private void moveEast() {
-        Character mainCharacter = Hemorrhage.getMainCharacter();
+        Game game = Hemorrhage.getCurrentGame();
+        Player player = game.getPlayer();
+        Character mainCharacter = player.getCharacter();
         Point coordinates = mainCharacter.getCoordinates();
         int xCoordinate = coordinates.x;
         xCoordinate += 1;
@@ -80,7 +88,9 @@ public class MoveView extends View{
     }
 
     private void moveWest() {
-        Character mainCharacter = Hemorrhage.getMainCharacter();
+        Game game = Hemorrhage.getCurrentGame();
+        Player player = game.getPlayer();
+        Character mainCharacter = player.getCharacter();
         Point coordinates = mainCharacter.getCoordinates();
         int xCoordinate = coordinates.x;
         xCoordinate -= 1;

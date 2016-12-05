@@ -5,6 +5,11 @@
  */
 package byui.cit260.hemorrhage.control;
 
+import byui.cit260.hemorrhage.model.Game;
+import byui.cit260.hemorrhage.model.Player;
+import byui.cit260.hemorrhage.model.Character;
+import hemorrhage.Hemorrhage;
+
 /**
  *
  * @author Braxton
@@ -13,7 +18,7 @@ public class CharacterControl {
     public static long getNewHealth(long playerCurrentHealth, long amountOfFood, long healthPoints) {
         
         long playerMaxHealth = 50;
-        long healthPoints = 10;
+        
        
         if (playerCurrentHealth <= 0 || amountOfFood <= 0) {
             return -1;
@@ -27,7 +32,12 @@ public class CharacterControl {
 
     }
     
-    
+    public static void chooseCharacter(int index) {
+        Game game = Hemorrhage.getCurrentGame();
+        Player player = game.getPlayer();
+        Character[] characterList = game.getCharacter();
+        player.setCharacter(characterList[index]);
+    }
     
     
 }

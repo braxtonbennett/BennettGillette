@@ -8,6 +8,8 @@ package byui.cit260hemmorrhage.view;
 import byui.cit260.hemorrhage.control.CombatControl;
 import java.util.Scanner;
 import byui.cit260.hemorrhage.model.Character;
+import byui.cit260.hemorrhage.model.Game;
+import byui.cit260.hemorrhage.model.Player;
 import byui.cit260.hemorrhage.model.WeaponItem;
 import hemorrhage.Hemorrhage;
 
@@ -35,7 +37,9 @@ public class BattleView extends View{
         
         choice = choice.toUpperCase();
         long weaponDmg = 0;
-        Character mainCharacter = Hemorrhage.getMainCharacter();
+        Game game = Hemorrhage.getCurrentGame();
+        Player player = game.getPlayer();
+        Character mainCharacter = player.getCharacter();
         Character zombieBoss = Hemorrhage.getZombieBoss();
         
        switch(choice) {
