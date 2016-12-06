@@ -9,24 +9,24 @@ package byui.cit260.hemorrhage.exceptions;
  *
  * @author Douglas
  */
-public class MapControlException extends Exception {
+public class CharacterControlException extends Exception {
 
-    public MapControlException() {
+    public CharacterControlException() {
     }
 
-    public MapControlException(String message) {
+    public CharacterControlException(String message) {
         super(message);
     }
 
-    public MapControlException(String message, Throwable cause) {
+    public CharacterControlException(String message, Throwable cause) {
         super(message, cause);
     }
 
-    public MapControlException(Throwable cause) {
+    public CharacterControlException(Throwable cause) {
         super(cause);
     }
 
-    public MapControlException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+    public CharacterControlException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);
     }
     

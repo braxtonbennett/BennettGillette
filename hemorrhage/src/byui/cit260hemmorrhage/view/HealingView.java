@@ -6,6 +6,7 @@
 package byui.cit260hemmorrhage.view;
 
 import byui.cit260.hemorrhage.control.CharacterControl;
+import byui.cit260.hemorrhage.exceptions.CharacterControlException;
 import byui.cit260.hemorrhage.model.HealthItem;
 import hemorrhage.Hemorrhage;
 import java.util.Scanner;
@@ -65,7 +66,11 @@ public class HealingView extends View{
                System.out.println("\n*** Invalid selection *** Try Again");
                break;
        }
-            long newHealth = CharacterControl.getNewHealth(55, quantity, healthPoint);
+        try{    
+       long newHealth = CharacterControl.getNewHealth(55, quantity, healthPoint);
+        }catch (CharacterControlException me) {
+            System.out.println(me.getMessage());
+        }
        return false;
     }
 

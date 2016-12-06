@@ -5,6 +5,7 @@
  */
 package byui.cit260.hemorrhage.control;
 
+import byui.cit260.hemorrhage.exceptions.CharacterControlException;
 import byui.cit260.hemorrhage.model.Game;
 import byui.cit260.hemorrhage.model.Player;
 import byui.cit260.hemorrhage.model.Character;
@@ -15,16 +16,17 @@ import hemorrhage.Hemorrhage;
  * @author Braxton
  */
 public class CharacterControl {
-    public static long getNewHealth(long playerCurrentHealth, long amountOfFood, long healthPoints) {
+    public static long getNewHealth(long playerCurrentHealth, long amountOfFood, long healthPoints) throws CharacterControlException {
         
         long playerMaxHealth = 50;
         
        
         if (playerCurrentHealth <= 0 || amountOfFood <= 0) {
-            return -1;
+            throw new CharacterControlException("Cannot Heal Character because not"
+                    + " enough food or Chracter is Dead");
         }
-        if (playerCurrentHealth > playerMaxHealth) {
-            return -1;
+        if (playerCurrentHealth >= playerMaxHealth) {
+            throw new CharacterControlException("Characters health is already full");
         }
         
         long newHealth = playerCurrentHealth + (amountOfFood * healthPoints);
