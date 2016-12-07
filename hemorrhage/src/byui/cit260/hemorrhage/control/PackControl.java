@@ -11,7 +11,7 @@ package byui.cit260.hemorrhage.control;
  */
 public class PackControl {
     
-    public long makeCure(long brahmi, long calihari, long henna, long harida) {
+    public static long makeCure(long brahmi, long calihari, long henna, long harida) {
         if (brahmi <= 0) {
                 return -1;
         }

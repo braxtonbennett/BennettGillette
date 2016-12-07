@@ -12,6 +12,9 @@ import byui.cit260.hemorrhage.model.Player;
 import byui.cit260hemmorrhage.view.StartProgramView;
 import byui.cit260.hemorrhage.model.WeaponItem;
 import byui.cit260.hemorrhage.model.Character;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 
 /**
  *
@@ -21,6 +24,10 @@ public class Hemorrhage {
 
     private static Game currentGame = null;
     private static Player player = null;
+    
+   private static PrintWriter outFile = null;
+   private static BufferedReader inFile = null;
+    
     private static HealthItem chicken = new HealthItem();
     private static HealthItem steak = new HealthItem();
     private static HealthItem burger = new HealthItem();
@@ -74,7 +81,10 @@ public class Hemorrhage {
             
        StartProgramView startProgramView = new StartProgramView();
        try {
-       startProgramView.display();
+           Hemorrhage.inFile = new BufferedReader(new InputStreamReader(System.in));
+          // Hemorrhage.outFile = new PrinterWriter(System.out, true);
+           
+           startProgramView.display();
        } catch (Throwable te) { 
            System.out.println(te.getMessage());
            te.printStackTrace();
@@ -173,6 +183,22 @@ public class Hemorrhage {
 
     public static void setZombieBoss(Character zombieBoss) {
         Hemorrhage.zombieBoss = zombieBoss;
+    }
+
+    public static PrintWriter getOutFile() {
+        return outFile;
+    }
+
+    public static void setOutFile(PrintWriter outFile) {
+        Hemorrhage.outFile = outFile;
+    }
+
+    public static BufferedReader getInFile() {
+        return inFile;
+    }
+
+    public static void setInFile(BufferedReader inFile) {
+        Hemorrhage.inFile = inFile;
     }
     
 }
