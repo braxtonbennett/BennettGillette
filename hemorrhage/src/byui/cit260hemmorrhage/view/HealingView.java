@@ -44,8 +44,12 @@ public class HealingView extends View{
          this.displayMessage = "\nPlease enter the number of food";
         // call getInput() to get the second value
        String Strquantity = this.getInput();
-       long quantity = Long.parseLong(Strquantity);
-        
+       long quantity = 0;
+       try {
+       quantity = Long.parseLong(Strquantity);
+       } catch(Throwable NumberFormatException){
+           System.out.println("You must enter a number and nothing else");
+       }
        switch (choice) {
            case "C":
            HealthItem healthChoice = Hemorrhage.getChicken();

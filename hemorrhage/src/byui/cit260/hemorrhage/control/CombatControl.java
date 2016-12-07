@@ -5,6 +5,8 @@
  */
 package byui.cit260.hemorrhage.control;
 
+import byui.cit260.hemorrhage.exceptions.CombatControlException;
+
 /**
  *
  * @author Braxton
@@ -15,21 +17,21 @@ public class CombatControl {
     }
     
     
-    public long calcBattleHealth(long attackDamage, long health, long weaponDamage, long monsterDamage, long monsterHealth) {
+    public long calcBattleHealth(long attackDamage, long health, long weaponDamage, long monsterDamage, long monsterHealth) throws CombatControlException{
         if (attackDamage <= 0) {
-                return 999;
+                throw new CombatControlException("attack Damage must be higher");
         }
          if (health <= 0) {
-                return 999;
+                throw new CombatControlException("health must be higher");
         }
           if (weaponDamage <= 0) {
-                return 999;
+                throw new CombatControlException("Weapon Damage must be higher");
         }
            if (monsterHealth <= 0) {
-                return 999;
+                throw new CombatControlException("Monster is already dead");
         }
             if (monsterDamage <= 0) {
-                return 999;
+                throw new CombatControlException("Monster damage is too low");
         }
             
             long newHealth = health - monsterDamage;

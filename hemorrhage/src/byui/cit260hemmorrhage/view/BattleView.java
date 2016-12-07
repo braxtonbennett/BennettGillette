@@ -6,6 +6,7 @@
 package byui.cit260hemmorrhage.view;
 
 import byui.cit260.hemorrhage.control.CombatControl;
+import byui.cit260.hemorrhage.exceptions.CombatControlException;
 import java.util.Scanner;
 import byui.cit260.hemorrhage.model.Character;
 import byui.cit260.hemorrhage.model.Game;
@@ -72,7 +73,11 @@ public class BattleView extends View{
         
         
         CombatControl combatControl = new CombatControl();
+        try {
         newHealth = combatControl.calcBattleHealth(atkDmg, health, monsterAtk, monsterHealth, weaponDmg);
+        } catch (CombatControlException me) {
+            System.out.println(me.getMessage());
+        }
         
         if (newHealth > 0) {
             System.out.println("You have defeated "+ zombieBoss.getName()+"!");
