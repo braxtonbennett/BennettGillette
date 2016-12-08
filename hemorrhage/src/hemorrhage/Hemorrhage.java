@@ -13,8 +13,11 @@ import byui.cit260hemmorrhage.view.StartProgramView;
 import byui.cit260.hemorrhage.model.WeaponItem;
 import byui.cit260.hemorrhage.model.Character;
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -27,6 +30,7 @@ public class Hemorrhage {
     
    private static PrintWriter outFile = null;
    private static BufferedReader inFile = null;
+   private static PrintWriter logFile = null;
     
     private static HealthItem chicken = new HealthItem();
     private static HealthItem steak = new HealthItem();
@@ -78,17 +82,38 @@ public class Hemorrhage {
        zombieBoss.setAtkPower(30);
        zombieBoss.setHealth(80);
        zombieBoss.setDescription("He Da Boss");
-            
-       StartProgramView startProgramView = new StartProgramView();
+          StartProgramView startProgramView = null;  
+       
        try {
            Hemorrhage.inFile = new BufferedReader(new InputStreamReader(System.in));
-          // Hemorrhage.outFile = new PrinterWriter(System.out, true);
+           Hemorrhage.outFile = new PrintWriter(System.out, true);
            
+           String filePath = "log.txt";
+           Hemorrhage.logFile = new PrintWriter(filePath);
+           
+           startProgramView = new StartProgramView();
            startProgramView.display();
        } catch (Throwable te) { 
            System.out.println(te.getMessage());
            te.printStackTrace();
            startProgramView.display();
+       } 
+       finally  {
+           try {
+               if (Hemorrhage.inFile !=null)
+               Hemorrhage.inFile.close();
+               
+               if (Hemorrhage.outFile !=null)
+               Hemorrhage.outFile.close();
+               
+               if (Hemorrhage.logFile !=null)
+               Hemorrhage.logFile.close();
+               
+           } catch (IOException ex) {
+               System.out.println("Error Closing Files");
+               return;
+           }
+           
        }
        
        
@@ -199,6 +224,14 @@ public class Hemorrhage {
 
     public static void setInFile(BufferedReader inFile) {
         Hemorrhage.inFile = inFile;
+    }
+
+    public static PrintWriter getLogFile() {
+        return logFile;
+    }
+
+    public static void setLogFile(PrintWriter logFile) {
+        Hemorrhage.logFile = logFile;
     }
     
 }

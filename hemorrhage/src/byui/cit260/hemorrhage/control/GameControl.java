@@ -5,6 +5,7 @@
  */
 package byui.cit260.hemorrhage.control;
 
+import byui.cit260.hemorrhage.exceptions.GameControlException;
 import byui.cit260.hemorrhage.model.Game;
 import byui.cit260.hemorrhage.model.HealthItem;
 import byui.cit260.hemorrhage.model.Item;
@@ -16,6 +17,10 @@ import byui.cit260.hemorrhage.model.Location;
 import byui.cit260.hemorrhage.model.Map;
 import hemorrhage.Hemorrhage;
 import java.awt.Point;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 /**
  *
@@ -271,6 +276,23 @@ public class GameControl {
         packZombie.setNoSlots(1);
         
         return packList;
+    }
+
+    public static void saveGame(Game currentGame, String filePath) throws GameControlException {
+        try(FileOutputStream fops = new FileOutputStream(filePath)){
+            ObjectOutputStream output = new ObjectOutputStream(fops);
+        }catch(Exception e){
+            throw new GameControlException(e.getMessage());
+        }
+    }
+
+    public static void getSavedGame(String filePath) throws GameControlException {
+        Game game = null;
+        try(FileInputStream fips = new FileInputStream(filePath)){
+            ObjectInputStream input = new ObjectInputStream(fips);
+        }catch(Exception e){
+            throw new GameControlException(e.getMessage());
+        }
     }
         
     

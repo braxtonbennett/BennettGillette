@@ -5,8 +5,8 @@
  */
 package byui.cit260hemmorrhage.view;
 
+import byui.cit260.hemorrhage.control.GameControl;
 import byui.cit260.hemorrhage.control.MapControl;
-import java.util.Scanner;
 import byui.cit260.hemorrhage.model.Character;
 import byui.cit260.hemorrhage.model.Game;
 import byui.cit260.hemorrhage.model.Item;
@@ -38,6 +38,7 @@ public class GameMenuView extends View{
                 + "\n X - Heal"
                 + "\n I - View Inventory"
                 + "\n G - View Glossary"
+                + "\n K - Save Game"
                 + "\n H - Help Menu"
                 + "\n E - Exit"
                 + "\n-----------------------------------------------------");
@@ -72,21 +73,24 @@ public class GameMenuView extends View{
            case "G":
                this.viewGlossary();
                break;
-            case "X":
+           case "K":
+               this.saveGame();
+               break; 
+           case "X":
                this.viewHealMenu();
                break;
            case "H":
                this.viewHelpMenu();
                break;
            default:
-               System.out.println("\n*** Invalid selection *** Try Again");
+               this.console.println("\n*** Invalid selection *** Try Again");
                break;
        }
        return false;
     }
 
     private void viewMap() {
-        System.out.println("\nThese are the maps of all 5 areas");
+        this.console.println("\nThese are the maps of all 5 areas");
               Location[][] rexburg = Map.rexburg.getLocations();
               Location[][] lasVegas = Map.lasVegas.getLocations();
               Location[][] lA = Map.lA.getLocations();
@@ -97,125 +101,125 @@ public class GameMenuView extends View{
               int rowNum = -1;
               int columnNum = 0;
               
-              System.out.println("\n                 All Maps");
+              this.console.println("\n                 All Maps");
              
-              System.out.println("\n"
+              this.console.println("\n"
                       + "\n                 Rexburg Map");
-              System.out.println("    1     2  ");
+              this.console.println("    1     2  ");
               for (Location[] row : rexburg) {
                   rowNo++;
                   rowNum++;
-                  System.out.print("\n----------------"
+                  this.console.print("\n----------------"
                           + "\n"+ rowNo);
                   int columnNo = -1;
                   for (Location column : row) {
                       columnNo++;
                   Location location = rexburg[rowNum][columnNo];
                   Scene scene = location.getScene();
-                      System.out.print("|  "+scene.getMapSymbol()+"  ");
+                      this.console.print("|  "+scene.getMapSymbol()+"  ");
                       
                   }
-                  System.out.print("|");
+                  this.console.print("|");
                   
               }
-              System.out.println("\n----------------");
+              this.console.println("\n----------------");
               
               rowNo = 0;
               rowNum = -1;
               columnNum = 0;
-              System.out.println("\n"
+              this.console.println("\n"
                       + "\n                 Las Vegas Map");
-              System.out.println("    1     2  ");
+              this.console.println("    1     2  ");
               for (Location[] row : lasVegas) {
                   rowNo++;
                   rowNum++;
-                  System.out.print("\n----------------"
+                  this.console.print("\n----------------"
                           + "\n"+ rowNo);
                   int columnNo = -1;
                   for (Location column : row) {
                       columnNo++;
                   Location location = lasVegas[rowNum][columnNo];
                   Scene scene = location.getScene();
-                      System.out.print("|  "+scene.getMapSymbol()+"  ");
+                      this.console.print("|  "+scene.getMapSymbol()+"  ");
                       
                   }
-                  System.out.print("|");
+                  this.console.print("|");
                   
               }
-              System.out.println("\n----------------");
+              this.console.println("\n----------------");
               
                rowNo = 0;
               rowNum = -1;
               columnNum = 0;
-              System.out.println("\n"
+              this.console.println("\n"
                       + "\n                 LA Map");
-              System.out.println("    1     2  ");
+              this.console.println("    1     2  ");
               for (Location[] row : lA) {
                   rowNo++;
                   rowNum++;
-                  System.out.print("\n----------------"
+                  this.console.print("\n----------------"
                           + "\n"+ rowNo);
                   int columnNo = -1;
                   for (Location column : row) {
                       columnNo++;
                   Location location = lA[rowNum][columnNo];
                   Scene scene = location.getScene();
-                      System.out.print("|  "+scene.getMapSymbol()+"  ");
+                      this.console.print("|  "+scene.getMapSymbol()+"  ");
                       
                   }
-                  System.out.print("|");
+                  this.console.print("|");
                   
               }
-              System.out.println("\n----------------");
+              this.console.println("\n----------------");
               
                rowNo = 0;
               rowNum = -1;
               columnNum = 0;
-              System.out.println("\n"
+              this.console.println("\n"
                       + "\n                 New York Map");
-              System.out.println("    1     2  ");
+              this.console.println("    1     2  ");
               for (Location[] row : newYork) {
                   rowNo++;
                   rowNum++;
-                  System.out.print("\n----------------"
+                  this.console.print("\n----------------"
                           + "\n"+ rowNo);
                   int columnNo = -1;
                   for (Location column : row) {
                       columnNo++;
                   Location location = newYork[rowNum][columnNo];
                   Scene scene = location.getScene();
-                      System.out.print("|  "+scene.getMapSymbol()+"  ");
+                      this.console.print("|  "+scene.getMapSymbol()+"  ");
                       
                   }
-                  System.out.print("|");
+                  this.console.print("|");
                   
               }
-              System.out.println("\n----------------");
+              this.console.println("\n----------------");
               
               rowNo = 0;
               rowNum = -1;
               columnNum = 0;
               
-              System.out.println("\n"
+              this.console.println("\n"
                       + "\n                 Houston Map");
-              System.out.println("    1     2  ");
+              this.console.println("    1     2  ");
               for (Location[] row : houston) {
                   rowNo++;
                   rowNum++;
-                  System.out.print("\n----------------"
+                  this.console.print("\n----------------"
                           + "\n"+ rowNo);
                   int columnNo = -1;
                   for (Location column : row) {
                       columnNo++;
                   Location location = houston[rowNum][columnNo];
                   Scene scene = location.getScene();
-                      System.out.print("|  "+scene.getMapSymbol()+"  ");
+                      this.console.print("|  "+scene.getMapSymbol()+"  ");
                       
                   }
-                  System.out.print("|");
+                  this.console.print("|");
                   
               }
-              System.out.println("\n----------------");
+              this.console.println("\n----------------");
               
               
               
@@ -229,7 +233,7 @@ public class GameMenuView extends View{
     }
 
     private void lookAround() {
-        System.out.println("\n*** lookAround() called***");
+        this.console.println("\n*** lookAround() called***");
     }
 
     private void searchLocation() {
@@ -240,23 +244,23 @@ public class GameMenuView extends View{
         Point characterLocation = mainCharacter.getCoordinates();
         Long mapNo = mainCharacter.getMapNo();
         ArrayList<Item> itemsAtLocation = MapControl.searchLocation(characterLocation, mapNo);
-        System.out.println("\n              Items at your Location");
+        this.console.println("\n              Items at your Location");
         line = new StringBuilder("                                   ");
         line.insert(0,"DESCRIPTION");
         line.insert(20,"IN STOCK");
-        System.out.println(line.toString());
+        this.console.println(line.toString());
         
         for (Item item:itemsAtLocation){
             line = new StringBuilder("                                   ");
             line.insert(0,item.getDescription());
             line.insert(23, item.getQuantityInStock());
-            System.out.println(line.toString());
+            this.console.println(line.toString());
             
                
         }
         
         
-        System.out.println("\n*** searchLocation() called***");
+        this.console.println("\n*** searchLocation() called***");
     }
 
     private void attackEnemy() {
@@ -271,17 +275,17 @@ public class GameMenuView extends View{
         Game game = Hemorrhage.getCurrentGame();
         Item[] items = game.getItem();
         
-        System.out.println("\n              Inventory Items");
+        this.console.println("\n              Inventory Items");
         line = new StringBuilder("                                   ");
         line.insert(0,"DESCRIPTION");
         line.insert(20,"IN STOCK");
-        System.out.println(line.toString());
+        this.console.println(line.toString());
         
         for (Item item: items){
             line = new StringBuilder("                                   ");
             line.insert(0,item.getDescription());
             line.insert(23, item.getQuantityInStock());
-            System.out.println(line.toString());
+            this.console.println(line.toString());
             
             
         }
@@ -291,7 +295,7 @@ public class GameMenuView extends View{
     }
 
     private void viewGlossary() {
-        System.out.println("\n*** viewGlossary() called***");
+        this.console.println("\n*** viewGlossary() called***");
     }
 
     private void viewHelpMenu() {
@@ -304,5 +308,31 @@ public class GameMenuView extends View{
         
         HealingView healingView = new HealingView();
         healingView.display();
+    }
+
+    private void saveGame() {
+        Game game = Hemorrhage.getCurrentGame();
+        Player player = game.getPlayer();
+        Character mainCharacter = player.getCharacter();
+        Point characterLocation = mainCharacter.getCoordinates();
+        Character[] characterList = game.getCharacter();
+        Character professor = characterList[4];
+        Point professorLocation = professor.getCoordinates();
+        Long professorMap = professor.getMapNo();
+        Long mapNo = mainCharacter.getMapNo();
+        if (mapNo != professorMap ||characterLocation != professorLocation){
+            this.console.println("\nYour character must be at the same location"
+                    + "\nas the professor in order to save the game.");
+            return;
+        }
+        this.console.println("\nPlease enter the file path for file where the game +"
+                + "\nis to be saved.");
+        String filePath = this.getInput();
+        
+        try {
+            GameControl.saveGame(Hemorrhage.getCurrentGame(), filePath);
+        } catch (Exception ex){
+            ErrorView.display("GameMenuView", ex.getMessage());
+        }
     }
 }

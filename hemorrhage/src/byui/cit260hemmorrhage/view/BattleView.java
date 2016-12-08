@@ -61,7 +61,7 @@ public class BattleView extends View{
                weaponDmg = weaponChoice.getDamage();
                break;
                default:
-               System.out.println("\n*** Invalid selection *** Try Again");
+               this.console.println("\n*** Invalid selection *** Try Again");
                break;
        }
        
@@ -76,15 +76,15 @@ public class BattleView extends View{
         try {
         newHealth = combatControl.calcBattleHealth(atkDmg, health, monsterAtk, monsterHealth, weaponDmg);
         } catch (CombatControlException me) {
-            System.out.println(me.getMessage());
+            ErrorView.display(this.getClass().getName() ,me.getMessage());
         }
         
         if (newHealth > 0) {
-            System.out.println("You have defeated "+ zombieBoss.getName()+"!");
+            this.console.println("You have defeated "+ zombieBoss.getName()+"!");
             return true;
         }
         else {
-            System.out.println("You Died! :(");
+            this.console.println("You Died! :(");
             return true;
         }
     }

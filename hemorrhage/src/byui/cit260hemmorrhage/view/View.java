@@ -5,7 +5,12 @@
  */
 package byui.cit260hemmorrhage.view;
 
-import java.util.Scanner;
+import hemorrhage.Hemorrhage;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -13,6 +18,9 @@ import java.util.Scanner;
  */
 public abstract class View implements ViewInterface {
     protected String displayMessage;
+    
+    protected final BufferedReader keyboard = Hemorrhage.getInFile();
+    protected final PrintWriter console = Hemorrhage.getOutFile();
     
         public View(){
             
@@ -24,18 +32,21 @@ public abstract class View implements ViewInterface {
 
     @Override
     public String getInput(){
-     Scanner keyboard = new Scanner(System.in);
       String value = "";
       boolean valid = false;
       
       while (!valid) {
-          System.out.println("\n" + this.displayMessage);
+          this.console.println("\n" + this.displayMessage);
           
-          value = keyboard.nextLine();
+          try {
+              value = this.keyboard.readLine();
+          } catch (IOException ex) {
+              this.console.println("Error reading input: "+ ex.getMessage());
+          }
           value = value.trim();
           
           if (value.length() < 1) {
-              System.out.println("\nInvalid value: value cannot be blank");
+              this.console.println("\nInvalid value: value cannot be blank");
               continue;
               
           }

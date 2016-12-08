@@ -47,7 +47,7 @@ public class MoveView extends View{
                this.moveWest();
                break;
            default:
-               System.out.println("\n*** Invalid selection *** Try Again");
+               this.console.println("\n*** Invalid selection *** Try Again");
                break;
        }
        return false;

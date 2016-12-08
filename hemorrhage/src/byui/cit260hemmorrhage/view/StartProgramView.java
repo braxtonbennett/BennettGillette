@@ -7,7 +7,7 @@ package byui.cit260hemmorrhage.view;
 
 import byui.cit260.hemorrhage.control.GameControl;
 import byui.cit260.hemorrhage.model.Player;
-import java.util.Scanner;
+
 
 /**
  *
@@ -26,7 +26,7 @@ public class StartProgramView extends View{
     
     private void displayBanner() {
        
-        System.out.println(
+        this.console.println(
                 "\n**********************************************************"
                         + "\n"
                         + "\n This game is Hemmorrhage!"
@@ -37,36 +37,10 @@ public class StartProgramView extends View{
                         + "\n**********************************************************");
 
     }
-
-  
-
-    private String getPlayersName() {
-      Scanner keyboard = new Scanner(System.in);
-      String value = "";
-      boolean valid = false;
-      
-      while (!valid) {
-          System.out.println("\n" + this.displayMessage);
-          
-          value = keyboard.nextLine();
-          value = value.trim();
-          
-          if (value.length() < 1) {
-              System.out.println("\nInvalid value: value cannot be blank");
-              continue;
-              
-          }
-          
-          break;
-      }
-      
-      return value;
-    }
-
    
 
     private void displayNextView(Player player) {
-        System.out.println("\n======================================="
+        this.console.println("\n======================================="
                 + "\nWelcome to the Game " + player.getName()
                 + "\nHave fun Killing Zombies"
                 + "\n=======================================");
@@ -79,7 +53,7 @@ public class StartProgramView extends View{
     @Override
     public boolean doAction(String value) {
         if (value.length() < 2) {
-            System.out.println("\nInvalid players name:"
+            this.console.println("\nInvalid players name:"
                     + "\nThe name must be greater than one character in length");
             return false;
         }
@@ -87,7 +61,7 @@ public class StartProgramView extends View{
         Player player = GameControl.createPlayer(value);
         
         if (player==null) {
-            System.out.println("\nError Creating Player.");
+            this.console.println("\nError Creating Player.");
         }
        this.displayNextView(player);
        return true;

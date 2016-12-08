@@ -48,7 +48,7 @@ public class HealingView extends View{
        try {
        quantity = Long.parseLong(Strquantity);
        } catch(Throwable NumberFormatException){
-           System.out.println("You must enter a number and nothing else");
+           this.console.println("You must enter a number and nothing else");
        }
        switch (choice) {
            case "C":
@@ -67,13 +67,13 @@ public class HealingView extends View{
                break;
           
            default:
-               System.out.println("\n*** Invalid selection *** Try Again");
+               this.console.println("\n*** Invalid selection *** Try Again");
                break;
        }
         try{    
        long newHealth = CharacterControl.getNewHealth(55, quantity, healthPoint);
         }catch (CharacterControlException me) {
-            System.out.println(me.getMessage());
+            ErrorView.display(this.getClass().getName() ,me.getMessage());
         }
        return false;
     }

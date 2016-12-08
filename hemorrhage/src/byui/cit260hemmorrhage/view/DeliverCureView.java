@@ -43,7 +43,7 @@ public class DeliverCureView extends View{
                
           
            default:
-               System.out.println("\n*** Invalid selection *** Try Again");
+               this.console.println("\n*** Invalid selection *** Try Again");
                break;
        }
        return false;
@@ -51,11 +51,11 @@ public class DeliverCureView extends View{
     
 
             private void displayTurnIn() {
-        System.out.println("\nYou have turned it in successfully.");           
+        this.console.println("\nYou have turned it in successfully.");           
     }
      
             private void displayLeave() {
-        System.out.println("\nYou walk outside the big bunker door.");
+        this.console.println("\nYou walk outside the big bunker door.");
     }
 
 }

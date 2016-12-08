@@ -18,57 +18,24 @@ import java.util.Scanner;
  *
  * @author Braxton
  */
-class ChampMenuView {
+class ChampMenuView extends View {
     
     private String champMenu;
 
     public ChampMenuView() {
-         this.champMenu = "\n****************************************"
+         super("\n****************************************"
                  + "\nChoose your Champion..."
                  +"\n************************************************"
                  + "\n[L] Lumber Jack Larry---[Q]View Stats"
                  + "\n[S] Super-fast Suzie---[W]View Stats"
                  + "\n[C} Cargo Carl---[V]View Stats"
                  + "\n[B] Basic Bob---[R]View Stats"
-                 + "\n***********************************************";
+                 + "\n***********************************************");
         
     }
-        public void displayChampMenu() {
-        boolean done =  false;
-        do {
-            String champMenuOption = this.getChampMenuOption();
-            if (champMenuOption.toUpperCase().equals("E"))
-                return;
-            
-            done = this.doAction(champMenuOption);
-            
-            }
-        while (!done);
-    }
-      private String getChampMenuOption() {
-      Scanner keyboard = new Scanner(System.in);
-      String value = "";
-      boolean valid = false;
-      
-      while (!valid) {
-          System.out.println("\n" + this.champMenu);
-          
-          value = keyboard.nextLine();
-          value = value.trim();
-          
-          if (value.length() < 1) {
-              System.out.println("\nInvalid value: value cannot be blank");
-              continue;
-          }
-          
-          break;
-      }
-      
-      return value;
-        
-    }
-      
-       private boolean doAction(String choice) {
+    
+      @Override
+       public boolean doAction(String choice) {
            choice = choice.toUpperCase();
        
        switch (choice) {
@@ -97,7 +64,7 @@ class ChampMenuView {
                this: displayCharacter(3);
                break;
            default:
-               System.out.println("\n*** Invalid selection *** Try Again");
+               this.console.println("\n*** Invalid selection *** Try Again");
                break;
        }
        return false;
@@ -107,7 +74,7 @@ class ChampMenuView {
         Player player = game.getPlayer();
         Character[] characterList = game.getCharacter();
         Character character = characterList[index];
-          System.out.println("\n"+ character.getName() +"'s Stats:"
+          this.console.println("\n"+ character.getName() +"'s Stats:"
                 + "\n*************************************"
                 + "\n Attack Power: "+character.getAtkPower()
                 + "\n Health Power: "+character.getHealth()
@@ -120,7 +87,7 @@ class ChampMenuView {
         Player player = game.getPlayer();
         Character[] characterList = game.getCharacter();
         Character character = characterList[index];
-        System.out.println("/n You have chosen "+ character.getName() +" as your character");
+        this.console.println("/n You have chosen "+ character.getName() +" as your character");
         CharacterControl.chooseCharacter(index);
         GameMenuView gameMenu = new GameMenuView();
         

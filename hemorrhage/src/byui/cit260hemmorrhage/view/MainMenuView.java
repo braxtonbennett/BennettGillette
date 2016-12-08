@@ -5,7 +5,10 @@
  */
 package byui.cit260hemmorrhage.view;
 
+import byui.cit260.hemorrhage.control.CharacterControl;
 import byui.cit260.hemorrhage.control.GameControl;
+import byui.cit260.hemorrhage.model.Game;
+import byui.cit260.hemorrhage.model.Player;
 import hemorrhage.Hemorrhage;
 import java.util.Scanner;
 
@@ -51,7 +54,7 @@ public class MainMenuView extends View{
                this.displayHelpMenu();
                break;
            default:
-               System.out.println("\n*** Invalid selection *** Try Again");
+               this.console.println("\n*** Invalid selection *** Try Again");
                break;
        }
        return false;
@@ -61,15 +64,33 @@ public class MainMenuView extends View{
        GameControl.createNewGame(Hemorrhage.getPlayer());
        
        ChampMenuView champMenu = new ChampMenuView();
-       champMenu.displayChampMenu();
+       champMenu.display();
     }
 
     private void startExistingGame() {
-        System.out.println("\n*** startExistingGame() called ***");
+        this.console.println("\n\nEnter the file where the game is saved");
+        String filePath = this.getInput();
+        
+        try{
+            GameControl.getSavedGame(filePath);
+        } catch(Exception ex){
+            ErrorView.display("MainMenuView", ex.getMessage());
+        }
+        GameMenuView gameMenu = new GameMenuView();
+        gameMenu.display();
     }
 
     private void quickStartGame() {
-        System.out.println("\n*** quickStartGame() called ***");
+       GameControl.createNewGame(Hemorrhage.getPlayer());
+       Game game = Hemorrhage.getCurrentGame();
+        Player player = game.getPlayer();
+        byui.cit260.hemorrhage.model.Character[] characterList = game.getCharacter();
+        byui.cit260.hemorrhage.model.Character character = characterList[3];
+        this.console.println("/n You have chosen "+ character.getName() +" as your character");
+        CharacterControl.chooseCharacter(3);
+        GameMenuView gameMenu = new GameMenuView();
+        
+        gameMenu.display();
     }
 
     private void displayHelpMenu() {

@@ -36,19 +36,19 @@ public class GameHelpMenuView extends View{
                this:displayCharacterStats();
                break;
            default:
-               System.out.println("\n*** Invalid selection *** Try Again");
+               this.console.println("\n*** Invalid selection *** Try Again");
                break;
        }
        return false;
     }
 
     private void displayObjectives() {
-        System.out.println("\nThe objective of the game is to find the four ingredients."
+        this.console.println("\nThe objective of the game is to find the four ingredients."
                 + "\n Return them to the Professor and create the cure");
     }
 
     private void displayCharacterStats() {
-        System.out.println("\n************************************************"
+        this.console.println("\n************************************************"
                 + "\n************************************************"
                 + "\n Display Character Stats Called" 
                 + "\n************************************************"
