@@ -1,6 +1,5 @@
 package byui.cit260hemmorrhage.view;
 
-import byui.cit260.hemorrhage.model.Pack;
 import hemorrhage.Hemorrhage;
 import java.util.Scanner;
 

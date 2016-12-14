@@ -5,6 +5,13 @@
  */
 package byui.cit260hemmorrhage.view;
 
+import byui.cit260.hemorrhage.control.GameControl;
+import byui.cit260.hemorrhage.model.Game;
+import byui.cit260.hemorrhage.model.Character;
+import byui.cit260.hemorrhage.model.Player;
+import hemorrhage.Hemorrhage;
+import java.awt.Point;
+import java.io.PrintWriter;
 import java.util.Scanner;
 /**
  *
@@ -19,6 +26,7 @@ public class GameHelpMenuView extends View{
                 + "\n**************************************************"
                 + "\n|O - Objectives"
                 + "\n|S - Character Stats"
+                + "\n|P - Print Chracter List"
                 + "\n|E - Exit Help Menu"
                 + "\n**************************************************");
     }
@@ -35,6 +43,14 @@ public class GameHelpMenuView extends View{
            case "S":
                this:displayCharacterStats();
                break;
+           case "P":
+                this.displayMessage =("\nPlease enter the file path for file where the list+"
+                + "\nis to be printed.");
+                String filePath = this.getInput();
+                Game game = Hemorrhage.getCurrentGame();
+                Character[] characters = game.getCharacter();
+               this:printChracterList(characters, filePath);
+               break;
            default:
                this.console.println("\n*** Invalid selection *** Try Again");
                break;
@@ -48,11 +64,35 @@ public class GameHelpMenuView extends View{
     }
 
     private void displayCharacterStats() {
-        this.console.println("\n************************************************"
-                + "\n************************************************"
-                + "\n Display Character Stats Called" 
-                + "\n************************************************"
-                + "\n************************************************");
+        Game game = Hemorrhage.getCurrentGame();
+        Player player = game.getPlayer();
+        Character character = player.getCharacter();
+        this.console.println("\n"+ character.getName() +"'s Stats:"
+                + "\n*************************************"
+                + "\n Attack Power: "+character.getAtkPower()
+                + "\n Health Power: "+character.getHealth()
+                + "\n*************************************");
     
 }
+
+    private void printChracterList(Character[] characters, String filePath) {
+          
+        boolean value = false;
+       
+        try (PrintWriter out = new PrintWriter(filePath)){
+            
+            out.println("\n\n               Character List                  ");
+            out.printf("%n%-20s%10s","Name","Location");
+            out.printf("%n%-20s%10s","--------------","---------");
+            
+            for(Character character: characters){
+            out.printf("%n%-20s%7s",character.getName(),"("+character.getX()+","+character.getY()+")");
+            }
+        } catch (Exception ex){
+            ErrorView.display("GameMenuView", ex.getMessage());
+        }
+        if (value == true){
+            this.console.println("The report has been printed to "+filePath);
+        }
+    }
 }

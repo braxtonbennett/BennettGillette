@@ -10,6 +10,10 @@ import byui.cit260.hemorrhage.model.Item;
 import byui.cit260.hemorrhage.model.Location;
 import byui.cit260.hemorrhage.model.Map;
 import byui.cit260.hemorrhage.model.Scene;
+import byui.cit260.hemorrhage.model.Character;
+import byui.cit260.hemorrhage.model.HealthItem;
+import byui.cit260.hemorrhage.model.Player;
+import byui.cit260.hemorrhage.model.WeaponItem;
 import hemorrhage.Hemorrhage;
 import java.awt.Point;
 import java.util.ArrayList;
@@ -99,21 +103,103 @@ public class MapControl {
         System.out.println("moveCharactersToStart() called");
     }
 
-    public static ArrayList<Item> searchLocation(Point coordinates, Long characterMapNo){
+    public static ArrayList<Item> searchLocation(int x, int y, String characterMapNo){
         
         ArrayList<Item> itemsAtLocation = new ArrayList<>();
         Game game = Hemorrhage.getCurrentGame();
         Item[] items = game.getItem();
         for (Item item: items){
-            Point point=item.getCoordinates();
-            long mapNo = item.getMapNo();
-            if(mapNo == characterMapNo )
-            if(point == coordinates){
+            int itemX = item.getX();
+            int itemY = item.getY();
+            String mapNo = item.getMapNo();
+            if(mapNo.equals(characterMapNo) && itemX == x && itemY == y){
                 itemsAtLocation.add(item);
+                item.setQuantityInStock(item.getNoFound());
+            }
+        }
+            WeaponItem[] weapons = game.getWeapons();
+        for (WeaponItem weapon: weapons){
+            int weaponX = weapon.getX();
+            int weaponY = weapon.getY();
+            String weaponMapNo = weapon.getMapNo();
+            if(weaponMapNo.equals(characterMapNo) && weaponX == x && weaponY == y){
+                itemsAtLocation.add(weapon);
+                weapon.setQuantityInStock(weapon.getNoFound());
+            }
+    }
+        HealthItem[] healths = game.getHealthItems();
+        for (HealthItem health: healths){
+            int healthX = health.getX();
+            int healthY = health.getY();
+            String weaponMapNo = health.getMapNo();
+            if(weaponMapNo.equals(characterMapNo) && healthX == x && healthY == y){
+                itemsAtLocation.add(health);
+                 health.setQuantityInStock(health.getNoFound());
             }
     }
         return itemsAtLocation;
+    
     }
+    public static ArrayList<Character> charactersAtLocation(int x, int y, String characterMapNo){
+       
+        ArrayList<Character> characterList = new ArrayList<>();
+        Game game = Hemorrhage.getCurrentGame();
+        Character[] characters = game.getZombieList();
+        for (Character character: characters){
+            int itemX = character.getX();
+            int itemY = character.getY();
+            String mapNo = character.getMapNo();
+            if(mapNo.equals(characterMapNo) && itemX == x && itemY == y){
+                characterList.add(character);
+            }
+    }
+        return characterList;
+    }
+    
+    public static Location[][] getMap(String mapNo){
+        
+        Location[][] map = null;
+        switch (mapNo) {
+           case "rexburg":
+               map = Map.rexburg.getLocations();
+               
+               break;
+           case "newYork":
+               map = Map.newYork.getLocations();
+               
+               break;
+           case "lA":
+               map = Map.lA.getLocations();
+               
+               break;
+           case "lasVegas":
+               map = Map.lasVegas.getLocations();
+               
+               break;
+           case "houston":
+               map = Map.houston.getLocations();
+               
+               break;
+           default:
+               System.out.println("\n*** Invalid selection *** Try Again");
+               break;
+       }
+       return map;
+    }
+    public static Scene moveMap(String MapName){
+        Game game = Hemorrhage.getCurrentGame();
+        Player player = game.getPlayer();
+        Character mainCharacter = player.getCharacter();
+        mainCharacter.setX(0);
+        mainCharacter.setY(0);
+        mainCharacter.setMapNo(MapName);
+        Location[][] map = getMap(MapName);
+        Location location = map[0][0];
+        Scene scene = location.getScene();
+        return scene;
+    }
+    
+   
    
     
 }

@@ -18,7 +18,7 @@ import hemorrhage.Hemorrhage;
 public class CharacterControl {
     public static long getNewHealth(long playerCurrentHealth, long amountOfFood, long healthPoints) throws CharacterControlException {
         
-        long playerMaxHealth = 50;
+        long playerMaxHealth = 200;
         
        
         if (playerCurrentHealth <= 0 || amountOfFood <= 0) {
@@ -30,6 +30,12 @@ public class CharacterControl {
         }
         
         long newHealth = playerCurrentHealth + (amountOfFood * healthPoints);
+        
+        Game game = Hemorrhage.getCurrentGame();
+        Player player = game.getPlayer();
+        Character mainCharacter = player.getCharacter();
+        mainCharacter.setHealth(newHealth);
+        
         return newHealth;
 
     }

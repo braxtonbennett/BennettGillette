@@ -9,11 +9,13 @@ import byui.cit260.hemorrhage.control.GameControl;
 import byui.cit260.hemorrhage.control.MapControl;
 import byui.cit260.hemorrhage.model.Character;
 import byui.cit260.hemorrhage.model.Game;
+import byui.cit260.hemorrhage.model.HealthItem;
 import byui.cit260.hemorrhage.model.Item;
 import byui.cit260.hemorrhage.model.Location;
 import byui.cit260.hemorrhage.model.Map;
 import byui.cit260.hemorrhage.model.Player;
 import byui.cit260.hemorrhage.model.Scene;
+import byui.cit260.hemorrhage.model.WeaponItem;
 import hemorrhage.Hemorrhage;
 import java.awt.Point;
 import java.util.ArrayList;
@@ -32,6 +34,7 @@ public class GameMenuView extends View{
                 + "\n-----------------------------------------------------"
                 + "\n V - View Map"
                 + "\n M - Move Location"
+                + "\n C - Move to New Map"
                 + "\n L - Look Around"
                 + "\n S - Search in location"
                 + "\n A - Attack Enemy"
@@ -40,7 +43,7 @@ public class GameMenuView extends View{
                 + "\n G - View Glossary"
                 + "\n K - Save Game"
                 + "\n H - Help Menu"
-                + "\n E - Exit"
+                + "\n E - Exit Game"
                 + "\n-----------------------------------------------------");
     }
 
@@ -57,6 +60,9 @@ public class GameMenuView extends View{
                break;
            case "M":
                this.moveLocation();
+               break;
+           case "C":
+               this:moveMap();
                break;
            case "L":
                this:lookAround();
@@ -233,7 +239,14 @@ public class GameMenuView extends View{
     }
 
     private void lookAround() {
-        this.console.println("\n*** lookAround() called***");
+        Game game = Hemorrhage.getCurrentGame();
+        Player player = game.getPlayer();
+        Character mainCharacter = player.getCharacter();
+        String mapName = mainCharacter.getMapNo();
+        Location[][] map = MapControl.getMap(mapName);
+        Location location = map[mainCharacter.getX()][mainCharacter.getY()];
+        Scene scene = location.getScene();
+        this.console.println(scene.getDescription());
     }
 
     private void searchLocation() {
@@ -241,26 +254,27 @@ public class GameMenuView extends View{
         Game game = Hemorrhage.getCurrentGame();
         Player player = game.getPlayer();
         Character mainCharacter = player.getCharacter();
-        Point characterLocation = mainCharacter.getCoordinates();
-        Long mapNo = mainCharacter.getMapNo();
-        ArrayList<Item> itemsAtLocation = MapControl.searchLocation(characterLocation, mapNo);
+        int x = mainCharacter.getX();
+        int y = mainCharacter.getY();
+        String mapNo = mainCharacter.getMapNo();
+        ArrayList<Item> itemsAtLocation = MapControl.searchLocation(x, y, mapNo);
         this.console.println("\n              Items at your Location");
         line = new StringBuilder("                                   ");
         line.insert(0,"DESCRIPTION");
-        line.insert(20,"IN STOCK");
+        line.insert(20,"No at Loc.");
         this.console.println(line.toString());
         
         for (Item item:itemsAtLocation){
             line = new StringBuilder("                                   ");
             line.insert(0,item.getDescription());
-            line.insert(23, item.getQuantityInStock());
+            line.insert(23, item.getNoFound());
             this.console.println(line.toString());
             
                
         }
         
         
-        this.console.println("\n*** searchLocation() called***");
+        this.console.println("\nThese Items have been added to your inventory.");
     }
 
     private void attackEnemy() {
@@ -274,6 +288,8 @@ public class GameMenuView extends View{
         
         Game game = Hemorrhage.getCurrentGame();
         Item[] items = game.getItem();
+        HealthItem[] healthItems = game.getHealthItems();
+        WeaponItem[] weapons = game.getWeapons();
         
         this.console.println("\n              Inventory Items");
         line = new StringBuilder("                                   ");
@@ -285,11 +301,20 @@ public class GameMenuView extends View{
             line = new StringBuilder("                                   ");
             line.insert(0,item.getDescription());
             line.insert(23, item.getQuantityInStock());
-            this.console.println(line.toString());
-            
-            
+            this.console.println(line.toString());  
         }
-        
+        for (HealthItem healthItem: healthItems){
+            line = new StringBuilder("                                   ");
+            line.insert(0,healthItem.getDescription());
+            line.insert(23, healthItem.getQuantityInStock());
+            this.console.println(line.toString());  
+        }
+        for (WeaponItem weapon: weapons){
+            line = new StringBuilder("                                   ");
+            line.insert(0,weapon.getDescription());
+            line.insert(23, weapon.getQuantityInStock());
+            this.console.println(line.toString());  
+        }
         
         
     }
@@ -312,20 +337,8 @@ public class GameMenuView extends View{
 
     private void saveGame() {
         Game game = Hemorrhage.getCurrentGame();
-        Player player = game.getPlayer();
-        Character mainCharacter = player.getCharacter();
-        Point characterLocation = mainCharacter.getCoordinates();
-        Character[] characterList = game.getCharacter();
-        Character professor = characterList[4];
-        Point professorLocation = professor.getCoordinates();
-        Long professorMap = professor.getMapNo();
-        Long mapNo = mainCharacter.getMapNo();
-        if (mapNo != professorMap ||characterLocation != professorLocation){
-            this.console.println("\nYour character must be at the same location"
-                    + "\nas the professor in order to save the game.");
-            return;
-        }
-        this.console.println("\nPlease enter the file path for file where the game +"
+        
+        this.displayMessage =("\nPlease enter the file path for file where the game "
                 + "\nis to be saved.");
         String filePath = this.getInput();
         
@@ -334,5 +347,10 @@ public class GameMenuView extends View{
         } catch (Exception ex){
             ErrorView.display("GameMenuView", ex.getMessage());
         }
+    }
+
+    private void moveMap() {
+        MoveMapView moveMapView = new MoveMapView();
+        moveMapView.display();
     }
 }

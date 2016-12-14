@@ -9,6 +9,7 @@ import byui.cit260.hemorrhage.control.CharacterControl;
 import byui.cit260.hemorrhage.control.GameControl;
 import byui.cit260.hemorrhage.model.Game;
 import byui.cit260.hemorrhage.model.Player;
+import byui.cit260.hemorrhage.model.Character;
 import hemorrhage.Hemorrhage;
 import java.util.Scanner;
 
@@ -68,7 +69,7 @@ public class MainMenuView extends View{
     }
 
     private void startExistingGame() {
-        this.console.println("\n\nEnter the file where the game is saved");
+        this.displayMessage =("\n\nEnter the file where the game is saved");
         String filePath = this.getInput();
         
         try{
@@ -84,8 +85,8 @@ public class MainMenuView extends View{
        GameControl.createNewGame(Hemorrhage.getPlayer());
        Game game = Hemorrhage.getCurrentGame();
         Player player = game.getPlayer();
-        byui.cit260.hemorrhage.model.Character[] characterList = game.getCharacter();
-        byui.cit260.hemorrhage.model.Character character = characterList[3];
+        Character[] characterList = game.getCharacter();
+        Character character = characterList[3];
         this.console.println("/n You have chosen "+ character.getName() +" as your character");
         CharacterControl.chooseCharacter(3);
         GameMenuView gameMenu = new GameMenuView();

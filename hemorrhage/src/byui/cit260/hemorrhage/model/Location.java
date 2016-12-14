@@ -16,7 +16,9 @@ public class Location {
     private int column;
     private Scene scene;
     private ArrayList<Character> characters;
-    private ArrayList<Item> items;  
+    private ArrayList<Item> items;
+    private ArrayList<HealthItem> healthItems;
+    private ArrayList<WeaponItem> weapons;
     
     
 
@@ -61,6 +63,22 @@ public class Location {
 
     public void setItems(ArrayList<Item> items) {
         this.items = items;
+    }
+
+    public ArrayList<HealthItem> getHealthItems() {
+        return healthItems;
+    }
+
+    public void setHealthItems(ArrayList<HealthItem> healthItems) {
+        this.healthItems = healthItems;
+    }
+
+    public ArrayList<WeaponItem> getWeapons() {
+        return weapons;
+    }
+
+    public void setWeapons(ArrayList<WeaponItem> weapons) {
+        this.weapons = weapons;
     }
 
 

@@ -7,7 +7,11 @@ package byui.cit260hemmorrhage.view;
 
 import byui.cit260.hemorrhage.control.CharacterControl;
 import byui.cit260.hemorrhage.exceptions.CharacterControlException;
+import byui.cit260.hemorrhage.model.Game;
 import byui.cit260.hemorrhage.model.HealthItem;
+import byui.cit260.hemorrhage.model.Player;
+import byui.cit260.hemorrhage.model.WeaponItem;
+import byui.cit260.hemorrhage.model.Character;
 import hemorrhage.Hemorrhage;
 import java.util.Scanner;
 
@@ -45,6 +49,13 @@ public class HealingView extends View{
         // call getInput() to get the second value
        String Strquantity = this.getInput();
        long quantity = 0;
+       
+        
+        Game game = Hemorrhage.getCurrentGame();
+        Player player = game.getPlayer();
+        Character mainCharacter = player.getCharacter();
+        HealthItem[] healthItems = game.getHealthItems();
+        
        try {
        quantity = Long.parseLong(Strquantity);
        } catch(Throwable NumberFormatException){
@@ -52,16 +63,16 @@ public class HealingView extends View{
        }
        switch (choice) {
            case "C":
-           HealthItem healthChoice = Hemorrhage.getChicken();
+           HealthItem healthChoice = healthItems[0];
            healthPoint = healthChoice.getHealthPoints();
                break;
            case "S":
-           healthChoice = Hemorrhage.getSteak();
+           healthChoice = healthItems[1];
            healthPoint = healthChoice.getHealthPoints();
                
                break;
            case "B":
-           healthChoice = Hemorrhage.getBurger();
+           healthChoice = healthItems[2];
            healthPoint = healthChoice.getHealthPoints();
               
                break;
@@ -72,6 +83,7 @@ public class HealingView extends View{
        }
         try{    
        long newHealth = CharacterControl.getNewHealth(55, quantity, healthPoint);
+       this.console.println("Your Health is now " + newHealth);
         }catch (CharacterControlException me) {
             ErrorView.display(this.getClass().getName() ,me.getMessage());
         }

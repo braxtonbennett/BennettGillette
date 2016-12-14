@@ -6,6 +6,10 @@
 package byui.cit260.hemorrhage.control;
 
 import byui.cit260.hemorrhage.exceptions.CombatControlException;
+import byui.cit260.hemorrhage.model.Game;
+import byui.cit260.hemorrhage.model.Player;
+import byui.cit260.hemorrhage.model.Character;
+import hemorrhage.Hemorrhage;
 
 /**
  *
@@ -42,7 +46,13 @@ public class CombatControl {
                 
             }
        newHealth = calcBattleHealth(attackDamage, newHealth, weaponDamage, monsterDamage, newMonsterHealth);
-      return newHealth;
+        Game game = Hemorrhage.getCurrentGame();
+        Player player = game.getPlayer();
+        Character mainCharacter = player.getCharacter();
+        mainCharacter.setHealth(newHealth);
+        
+       
+       return newHealth;
     }
     
 }

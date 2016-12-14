@@ -8,6 +8,7 @@ package byui.cit260.hemorrhage.model;
 import java.awt.Point;
 import java.util.Objects;
 import java.io.Serializable;
+import java.util.ArrayList;
 /**
  *
  * @author Douglas
@@ -16,11 +17,14 @@ public class Character implements Serializable{
     
      private String name;
      private String description;
-     private Point coordinates;
+     private int x;
+     private int y;
      private long atkPower;
      private long health;
-     private Pack pack;
-     private long mapNo;
+     private String mapNo;
+     ArrayList<Item> items;
+     ArrayList<WeaponItem> weapons;
+     ArrayList<HealthItem> healthItems;
 
     public Character() {
     }
@@ -41,20 +45,28 @@ public class Character implements Serializable{
         this.description = description;
     }
 
-    public Point getCoordinates() {
-        return coordinates;
+    public int getX() {
+        return x;
     }
 
-    public void setCoordinates(int x, int y) {
-        coordinates.x = x;
-        coordinates.y = y;
+    public void setX(int x) {
+        this.x = x;
     }
 
-    public long getMapNo() {
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+
+    public String getMapNo() {
         return mapNo;
     }
 
-    public void setMapNo(long mapNo) {
+    public void setMapNo(String mapNo) {
         this.mapNo = mapNo;
     }
 
@@ -74,26 +86,19 @@ public class Character implements Serializable{
         this.health = health;
     }
 
-    public Pack getPack() {
-        return pack;
-    }
 
-    public void setPack(Pack pack) {
-        this.pack = pack;
+    @Override
+    public String toString() {
+        return "Character{" + "name=" + name + ", description=" + description + ", x=" + x + ", y=" + y + ", atkPower=" + atkPower + ", health=" + health +", mapNo=" + mapNo + '}';
     }
 
     
-    @Override
-    public String toString() {
-        return "Character{" + "name=" + name + ", description=" + description + ", coordinates=" + coordinates + ", atkPower=" + atkPower + ", health=" + health + '}';
-    }
 
     @Override
     public int hashCode() {
         int hash = 5;
         hash = 17 * hash + Objects.hashCode(this.name);
         hash = 17 * hash + Objects.hashCode(this.description);
-        hash = 17 * hash + Objects.hashCode(this.coordinates);
         hash = 17 * hash + (int) (this.atkPower ^ (this.atkPower >>> 32));
         hash = 17 * hash + (int) (this.health ^ (this.health >>> 32));
         return hash;
@@ -121,9 +126,6 @@ public class Character implements Serializable{
             return false;
         }
         if (!Objects.equals(this.description, other.description)) {
-            return false;
-        }
-        if (!Objects.equals(this.coordinates, other.coordinates)) {
             return false;
         }
         return true;

@@ -16,9 +16,12 @@ public class Item implements Serializable{
     
     private String description;
     private long quantityInStock;
-    private Point coordinates = new Point();
+    private int x;
+    private int y;
+    private long noFound;
     
-    private long mapNo;
+    
+    private String mapNo;
             
     public Item() {
     }
@@ -39,21 +42,37 @@ public class Item implements Serializable{
         this.quantityInStock = quantityInStock;
     }
 
-    public Point getCoordinates() {
-        return coordinates;
+    public int getX() {
+        return x;
     }
 
-    public void setCoordinates(int x, int y) {
-        coordinates.x = x;
-        coordinates.y = y;
+    public void setX(int x) {
+        this.x = x;
     }
 
-    public long getMapNo() {
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+
+    public String getMapNo() {
         return mapNo;
     }
 
-    public void setMapNo(long mapNo) {
+    public void setMapNo(String mapNo) {
         this.mapNo = mapNo;
+    }
+
+    public long getNoFound() {
+        return noFound;
+    }
+
+    public void setNoFound(long noFound) {
+        this.noFound = noFound;
     }
 
     @Override

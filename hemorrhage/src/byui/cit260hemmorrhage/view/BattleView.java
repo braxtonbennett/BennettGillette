@@ -6,13 +6,17 @@
 package byui.cit260hemmorrhage.view;
 
 import byui.cit260.hemorrhage.control.CombatControl;
+import byui.cit260.hemorrhage.control.MapControl;
 import byui.cit260.hemorrhage.exceptions.CombatControlException;
 import java.util.Scanner;
 import byui.cit260.hemorrhage.model.Character;
 import byui.cit260.hemorrhage.model.Game;
+import byui.cit260.hemorrhage.model.Item;
+import byui.cit260.hemorrhage.model.Location;
 import byui.cit260.hemorrhage.model.Player;
 import byui.cit260.hemorrhage.model.WeaponItem;
 import hemorrhage.Hemorrhage;
+import java.util.ArrayList;
 
 /**
  *
@@ -21,12 +25,12 @@ import hemorrhage.Hemorrhage;
 public class BattleView extends View{
 
     public long newHealth = 0;
-    private static WeaponItem weaponchoice = null;
     private String prompt;
     
     public BattleView() {
         super("\nYou are about to attack a zombie."
                   + "\nWhich weapon from your pack would you like to use?"
+                  + "\nIf you want to fight bare handed enter NONE."
                   + "\nIf you don't want to attack enter E.");
         
     }
@@ -41,24 +45,30 @@ public class BattleView extends View{
         Game game = Hemorrhage.getCurrentGame();
         Player player = game.getPlayer();
         Character mainCharacter = player.getCharacter();
-        Character zombieBoss = Hemorrhage.getZombieBoss();
+        ArrayList<Character> character = MapControl.charactersAtLocation(mainCharacter.getX(), mainCharacter.getY(), mainCharacter.getMapNo());
+        Character zombieBoss = character.get(0);
+        WeaponItem[] weapons = game.getWeapons();
+        
         
        switch(choice) {
                case "KNIFE":
-                 WeaponItem weaponChoice = Hemorrhage.getKnife();
+                 WeaponItem weaponChoice = weapons[0];
                  weaponDmg = weaponChoice.getDamage();
                  break;
                case "BAT":
-               weaponChoice = Hemorrhage.getBat();
+               weaponChoice = weapons[2];
                weaponDmg = weaponChoice.getDamage();
                break;
                case "PISTOL":
-               weaponChoice = Hemorrhage.getPistol();
+               weaponChoice = weapons[1];
                weaponDmg = weaponChoice.getDamage();
                break;
                case "SHOTGUN":
-               weaponChoice = Hemorrhage.getShotgun();
+               weaponChoice = weapons[3];
                weaponDmg = weaponChoice.getDamage();
+               break;
+               case "NONE":
+               weaponDmg = 0;
                break;
                default:
                this.console.println("\n*** Invalid selection *** Try Again");

@@ -6,39 +6,25 @@
 package byui.cit260.hemorrhage.model;
 
 import java.io.Serializable;
+import java.util.Arrays;
+import java.util.Objects;
 /**
  *
  * @author Douglas
  */
 public class Game implements Serializable{
     
-    private double totalTime;
-    private long noPeople;
     private Player player;
 
     
     Character[] character;
     Item[] item;
-    Pack[] pack;
+    HealthItem[] healthItems;
+    WeaponItem[] weapons;
+    Character[] zombieList;
     
 
     public Game() {
-    }
-    
-    public double getTotalTime() {
-        return totalTime;
-    }
-
-    public void setTotalTime(double totalTime) {
-        this.totalTime = totalTime;
-    }
-
-    public long getNoPeople() {
-        return noPeople;
-    }
-
-    public void setNoPeople(long noPeople) {
-        this.noPeople = noPeople;
     }
 
     public Player getPlayer() {
@@ -65,29 +51,45 @@ public class Game implements Serializable{
         this.item = Item;
     }
 
-    public Pack[] getPack() {
-        return pack;
+    public HealthItem[] getHealthItems() {
+        return healthItems;
     }
 
-    public void setPack(Pack[] pack) {
-        this.pack = pack;
+    public void setHealthItems(HealthItem[] healthItems) {
+        this.healthItems = healthItems;
     }
-    
-    
 
-    @Override
-    public String toString() {
-        return "Game{" + "totalTime=" + totalTime + ", noPeople=" + noPeople + '}';
+    public WeaponItem[] getWeapons() {
+        return weapons;
+    }
+
+    public void setWeapons(WeaponItem[] weapons) {
+        this.weapons = weapons;
+    }
+
+    public Character[] getZombieList() {
+        return zombieList;
+    }
+
+    public void setZombieList(Character[] zombieList) {
+        this.zombieList = zombieList;
     }
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 97 * hash + (int) (Double.doubleToLongBits(this.totalTime) ^ (Double.doubleToLongBits(this.totalTime) >>> 32));
-        hash = 97 * hash + (int) (this.noPeople ^ (this.noPeople >>> 32));
+        int hash = 7;
+        hash = 89 * hash + Objects.hashCode(this.player);
+        hash = 89 * hash + Arrays.deepHashCode(this.character);
+        hash = 89 * hash + Arrays.deepHashCode(this.item);
         return hash;
     }
 
+    @Override
+    public String toString() {
+        return "Game{" + "player=" + player + ", character=" + character + ", item=" + item + '}';
+    }
+
+    
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -100,14 +102,21 @@ public class Game implements Serializable{
             return false;
         }
         final Game other = (Game) obj;
-        if (Double.doubleToLongBits(this.totalTime) != Double.doubleToLongBits(other.totalTime)) {
+        if (!Objects.equals(this.player, other.player)) {
             return false;
         }
-        if (this.noPeople != other.noPeople) {
+        if (!Arrays.deepEquals(this.character, other.character)) {
+            return false;
+        }
+        if (!Arrays.deepEquals(this.item, other.item)) {
             return false;
         }
         return true;
     }
+    
+    
+
+    
 
     
     

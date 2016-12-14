@@ -7,9 +7,12 @@ package byui.cit260hemmorrhage.view;
 
 import byui.cit260.hemorrhage.control.CharacterControl;
 import byui.cit260.hemorrhage.control.GameControl;
+import byui.cit260.hemorrhage.control.MapControl;
 import byui.cit260.hemorrhage.model.Game;
 import byui.cit260.hemorrhage.model.Player;
 import byui.cit260.hemorrhage.model.Character;
+import byui.cit260.hemorrhage.model.Location;
+import byui.cit260.hemorrhage.model.Scene;
 import hemorrhage.Hemorrhage;
 import java.util.Scanner;
 
@@ -78,7 +81,6 @@ class ChampMenuView extends View {
                 + "\n*************************************"
                 + "\n Attack Power: "+character.getAtkPower()
                 + "\n Health Power: "+character.getHealth()
-                + "\n Pack Size: "+character.getPack()
                 + "\n*************************************");
     }
 
@@ -87,8 +89,15 @@ class ChampMenuView extends View {
         Player player = game.getPlayer();
         Character[] characterList = game.getCharacter();
         Character character = characterList[index];
-        this.console.println("/n You have chosen "+ character.getName() +" as your character");
         CharacterControl.chooseCharacter(index);
+        Character mainCharacter = player.getCharacter();
+        String mapName = mainCharacter.getMapNo();
+        Location[][] map = MapControl.getMap(mapName);
+        Location location = map[mainCharacter.getX()][mainCharacter.getY()];
+        Scene scene = location.getScene();
+        
+        this.console.println("/n You have chosen "+ character.getName() +" as your character");
+        this.console.println(scene.getDescription());
         GameMenuView gameMenu = new GameMenuView();
         
         gameMenu.display();
